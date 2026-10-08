@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from '../components/LeadForm.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import panelsData from '../data/panels.json';
+
+const panels = panelsData as Array<{ name: string }>;
+const panelNames = panels.map(p => p.name);
+---
+<BaseLayout
+  title="Get a Free Panel Quote | AM Electricals Kolkata"
+  description="Request a quote for APFC, MCC, PCC, AMF/DG Sync, PLC or any custom panel. We reply within one business day. Kolkata factory, pan-India delivery."
+>
+  <section class="container-x pt-10 pb-16 md:pb-24">
+    <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Quote' }]} />
+    <div class="grid gap-10 lg:grid-cols-12 items-start pt-2">
+      <div class="lg:col-span-7 fade-up">
+        <div class="meta text-ink-500 mb-5">Free quote</div>
+        <h1 class="tracking-[-0.045em] mb-5 max-w-[16ch]">Send the spec. We reply in a day.</h1>
+        <p class="text-[1.0625rem] text-ink-600 leading-relaxed max-w-[52ch]">
+          SLD, load list, or a photo of the existing panel. Fastest is WhatsApp. Everything is reviewed by our founder before we quote.
+        </p>
+
+        <aside class="mt-10 card-dark p-6">
+          <div class="meta text-signal-300 mb-3">What speeds up your quote</div>
+          <ul class="space-y-2 text-[13.5px] text-ink-300 font-mono">
+            <li>SLD or feeder list (any format)</li>
+            <li>kVA / A rating and voltage</li>
+            <li>Standard: IS 8623 / IEC 61439-2 / other</li>
+            <li>Form segregation (2b / 3b / 4b)</li>
+            <li>Switchgear brand preference</li>
+            <li>Delivery timeline</li>
+            <li>Site location + accessibility</li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="lg:col-span-5 fade-up" style="transition-delay: 100ms;">
+        <LeadForm subject="Quote request from /quote page" panelOptions={panelNames} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

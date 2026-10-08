@@ -1,0 +1,19 @@
+---
+interface Spec { label: string; value: string; }
+interface Props { specs: Spec[]; caption?: string; dark?: boolean; }
+const { specs, caption, dark = false } = Astro.props;
+---
+<div class:list={[dark ? 'card-dark' : 'card', 'p-1']}>
+  {caption && <div class:list={['meta px-5 pt-4', dark ? 'text-ink-400' : 'text-ink-500']}>{caption}</div>}
+  <dl class="grid grid-cols-1">
+    {specs.map((s, i) => (
+      <div class:list={[
+        'grid grid-cols-[minmax(8rem,1fr)_2fr] gap-4 px-5 py-3.5',
+        i !== specs.length - 1 && (dark ? 'border-b border-white/[0.06]' : 'border-b border-border-subtle'),
+      ]}>
+        <dt class:list={['meta', dark ? 'text-ink-400' : 'text-ink-500']}>{s.label}</dt>
+        <dd class:list={['text-[13.5px] font-mono', dark ? 'text-white' : 'text-ink-900']}>{s.value}</dd>
+      </div>
+    ))}
+  </dl>
+</div>

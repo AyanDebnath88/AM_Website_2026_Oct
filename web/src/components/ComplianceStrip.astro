@@ -1,0 +1,21 @@
+---
+interface Props {
+  items: string[];
+  dark?: boolean;
+}
+const { items, dark = false } = Astro.props;
+const chip = dark
+  ? 'inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/10 bg-white/[0.03] meta text-signal-300'
+  : 'inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-border-subtle bg-surface-muted meta text-ink-700';
+---
+{items && items.length > 0 && (
+  <div class="flex flex-wrap gap-2 items-center">
+    <span class:list={['meta', dark ? 'text-ink-400' : 'text-ink-500']}>Standards</span>
+    {items.map(i => (
+      <span class={chip}>
+        <span class="w-1 h-1 rounded-full bg-signal-500"></span>
+        {i}
+      </span>
+    ))}
+  </div>
+)}

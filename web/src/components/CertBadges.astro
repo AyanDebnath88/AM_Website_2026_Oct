@@ -1,0 +1,38 @@
+---
+import { site } from '../data/site';
+interface Props { dark?: boolean; }
+const { dark = false } = Astro.props;
+const chip = dark
+  ? 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.03] meta text-ink-200'
+  : 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border-subtle bg-surface-muted meta text-ink-700';
+const items = [...site.certifications.map(c => ({ label: c.name, title: c.description })), { label: 'Est. 1991', title: undefined }];
+---
+<div class="cert-badges flex flex-wrap items-center gap-2">
+  <span class:list={['meta', dark ? 'text-ink-400' : 'text-ink-500']}>Verified</span>
+  {items.map((item, i) => (
+    <span class={chip} title={item.title} style={`animation-delay: ${220 + i * 90}ms`}>
+      <span class="cert-dot w-1 h-1 rounded-full bg-signal-500"></span>
+      {item.label}
+    </span>
+  ))}
+</div>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .cert-badges span[title], .cert-badges span:not([title]):not(.meta) {
+      opacity: 0;
+      animation: cert-pop 480ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes cert-pop {
+      from { opacity: 0; transform: translateY(4px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .cert-dot {
+      animation: cert-pulse 2.6s ease-in-out infinite;
+    }
+    @keyframes cert-pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(236, 19, 26, 0.35); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 3px rgba(236, 19, 26, 0); }
+    }
+  }
+</style>

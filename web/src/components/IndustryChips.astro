@@ -1,0 +1,20 @@
+---
+interface Props {
+  industries: string[];
+  dark?: boolean;
+}
+const { industries, dark = false } = Astro.props;
+const chip = dark
+  ? 'inline-flex items-center gap-2 px-3 py-2 rounded-md border border-white/10 bg-white/[0.03] text-[13px] text-ink-200 font-medium'
+  : 'inline-flex items-center gap-2 px-3 py-2 rounded-md border border-border-subtle bg-surface-muted text-[13px] text-ink-800 font-medium';
+---
+{industries && industries.length > 0 && (
+  <div class="flex flex-wrap gap-2">
+    {industries.map(i => (
+      <span class={chip}>
+        <span class="w-1 h-1 rounded-full bg-signal-500"></span>
+        {i}
+      </span>
+    ))}
+  </div>
+)}

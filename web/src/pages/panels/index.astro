@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PanelCard from '../../components/PanelCard.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import panelsData from '../../data/panels.json';
+
+const panels = panelsData as Array<{
+  slug: string;
+  name: string;
+  tagline: string;
+  image: string;
+  priority: number;
+}>;
+---
+
+<BaseLayout
+  title="Control Panels . Full Range | AM Electricals"
+  description="Full range of control panels built to IS 8623 / IEC 61439-2 . APFC, MCC, PCC, AMF/DG Sync, PLC, HVAC, AHU, Fire Alarm, PDB, STP/ETP/WTP, and custom panels."
+>
+  <section class="container-x pt-10 pb-14 md:pb-20">
+    <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Panels' }]} />
+    <div class="grid gap-8 md:grid-cols-12 items-end pt-2">
+      <div class="md:col-span-8 fade-up">
+        <div class="meta text-ink-500 mb-4">13 families</div>
+        <h1 class="tracking-[-0.045em] mb-4 max-w-[16ch]">Every panel we build.</h1>
+        <p class="text-[1.0625rem] text-ink-600 leading-relaxed max-w-[54ch]">
+          Built in our Kolkata factory to IS 8623 / IEC 61439-2 and CPRI 6000A type-tested designs. Every panel ships with a BOQ, SLD, GA drawing and FAT report.
+        </p>
+      </div>
+      <div class="md:col-span-4 md:text-right fade-up" style="transition-delay: 100ms;">
+        <div class="card-dark inline-flex flex-col px-6 py-5 text-left">
+          <div class="meta text-signal-300 mb-1">Since 1991</div>
+          <div class="text-2xl font-medium tracking-tight text-white">34 <span class="text-signal-300 font-mono text-lg">years</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-x pb-24 md:pb-32">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {panels.map((p, i) => (
+        <PanelCard slug={p.slug} name={p.name} tagline={p.tagline} image={p.image} index={i+1} />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ink-950 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
+    <div class="container-x py-20 md:py-24 grid gap-12 md:grid-cols-12 items-center relative">
+      <div class="md:col-span-7 fade-up">
+        <div class="meta text-signal-300 mb-4">Standards</div>
+        <h2 class="text-white tracking-[-0.03em] mb-6 max-w-[22ch]">IS 8623. Form 4b. 65 kA. Nothing to guess.</h2>
+        <p class="text-ink-300 leading-relaxed max-w-[54ch]">
+          IS 8623 (aligned with IEC 61439-2) is the definitive standard for low-voltage switchgear assemblies in India. We build to Form 2b, 3b or 4b segregation on request, with 65 kA / 1s short-circuit withstand on our MCC and PCC lines. Ask for type-test evidence.
+        </p>
+      </div>
+      <div class="md:col-span-5 fade-up" style="transition-delay: 100ms;">
+        <div class="card-dark p-6 grid grid-cols-3 gap-x-4 gap-y-6">
+          {[
+            {k:'Standard', v:'IS 8623'},
+            {k:'Form', v:'2b / 3b / 4b'},
+            {k:'Icw', v:'65 kA / 1s'},
+            {k:'IP', v:'54 / 55'},
+            {k:'Cert', v:'CPRI'},
+            {k:'QMS', v:'ISO 9001'},
+          ].map(item => (
+            <div>
+              <div class="meta text-signal-300">{item.k}</div>
+              <div class="font-mono text-[15px] mt-1 text-white">{item.v}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

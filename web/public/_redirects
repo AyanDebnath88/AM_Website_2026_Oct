@@ -1,0 +1,13 @@
+/apfc /panels/apfc-panel-manufacturer-kolkata/ 301
+/mcc /panels/mcc-panel-manufacturer/ 301
+/pcc /panels/pcc-panel-manufacturer/ 301
+/amf-dg-sync /panels/amf-dg-sync-panels/ 301
+/plc-automation /panels/plc-automation-panels/ 301
+/hvac /panels/hvac-control-panels/ 301
+/ahu-metering /panels/ahu-metering-panels/ 301
+/control-desk /panels/industrial-control-desks/ 301
+/dg-control /panels/dg-control-panels/ 301
+/fire-alarm-panels /panels/fire-alarm-control-panels/ 301
+/power-distribution /panels/power-distribution-panels/ 301
+/stp-etp-wtp /panels/stp-etp-wtp-panels/ 301
+/other-panels /panels/custom-control-panels/ 301

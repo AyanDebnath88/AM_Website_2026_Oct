@@ -1,0 +1,23 @@
+# raw working folders . not needed on the deploy host
+00-discovery/
+02-design/
+03-content-briefs/
+04-copy/
+site/
+
+# raw uploaded photo batches (large, pre-processed source assets)
+01-assets/
+
+# generated knowledge graph
+graphify-out/
+
+# lighthouse audit output
+lighthouse-reports/
+
+# editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,147 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  schema?: object | object[];
+  preloadHero?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/images/panels/hero-mcc.jpg',
+  noindex = false,
+  schema,
+  preloadHero,
+} = Astro.props;
+
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+const fullOgImage = new URL(ogImage, Astro.site).toString();
+const schemaJson = schema ? (Array.isArray(schema) ? schema : [schema]) : null;
+
+// Env-driven analytics + verify tags (set in Vercel/Netlify env). Safe fallbacks.
+const plausibleDomain = (import.meta.env as any).PUBLIC_PLAUSIBLE_DOMAIN as string | undefined;
+const gscVerify       = (import.meta.env as any).PUBLIC_GSC_VERIFY as string | undefined;
+const bingVerify      = (import.meta.env as any).PUBLIC_BING_VERIFY as string | undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0A0A0A" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="canonical" href={canonicalUrl} />
+
+    {/* Search engine verification (env-driven; user fills the token in hosting env) */}
+    {gscVerify  && <meta name="google-site-verification" content={gscVerify} />}
+    {bingVerify && <meta name="msvalidate.01" content={bingVerify} />}
+
+    {/* Open Graph */}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:image:alt" content={description} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_IN" />
+
+    {/* Twitter */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    {/* DNS + font preconnect */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    {/* Preload above-the-fold hero image (per-page opt-in) */}
+    {preloadHero && (
+      <link rel="preload" as="image" href={preloadHero} fetchpriority="high" />
+    )}
+
+    <meta name="generator" content={Astro.generator} />
+
+    {schemaJson && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(schemaJson)}
+      />
+    )}
+
+    {/* Privacy-friendly analytics . env-gated so dev doesn't pollute stats */}
+    {plausibleDomain && (
+      <script
+        is:inline
+        defer
+        data-domain={plausibleDomain}
+        src="https://plausible.io/js/script.js"
+      ></script>
+    )}
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-signal-500 focus:text-white focus:px-4 focus:py-2 focus:rounded-md">
+      Skip to main content
+    </a>
+
+    <Header />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <WhatsAppFloat />
+
+    <script>
+      // Fade-up on scroll
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('.fade-up, .fade-in').forEach((el) => io.observe(el));
+
+      // Cursor spotlight on dark cards
+      document.querySelectorAll<HTMLElement>('.spotlight').forEach((el) => {
+        el.addEventListener('pointermove', (e) => {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty('--x', `${e.clientX - r.left}px`);
+          el.style.setProperty('--y', `${e.clientY - r.top}px`);
+        });
+      });
+    </script>
+  </body>
+</html>

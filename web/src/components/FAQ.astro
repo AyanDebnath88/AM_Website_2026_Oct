@@ -1,0 +1,33 @@
+---
+interface Item { q: string; a: string; }
+interface Props { items: Item[]; }
+const { items } = Astro.props;
+---
+<div class="divide-y divide-border-subtle border-y border-border-subtle">
+  {items.map((item) => (
+    <details class="group py-5 fade-up">
+      <summary class="cursor-pointer list-none flex items-start justify-between gap-6 text-[16px] font-medium text-ink-900 tracking-tight">
+        <span class="pr-4">{item.q}</span>
+        <span aria-hidden="true" class="shrink-0 mt-1 inline-flex items-center justify-center w-7 h-7 rounded-full bg-ink-100 text-ink-800 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-open:rotate-45 group-open:bg-signal-500 group-open:text-white">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+      </summary>
+      <div class="faq-body mt-3 pr-12 text-[14.5px] text-ink-600 leading-relaxed">
+        <p>{item.a}</p>
+      </div>
+    </details>
+  ))}
+</div>
+
+<style>
+  /* Content fade-in on open — safe, no height animation, no JS, no clipping risk */
+  @media (prefers-reduced-motion: no-preference) {
+    .faq-body {
+      animation: faq-fade 220ms cubic-bezier(0.32, 0.72, 0, 1);
+    }
+    @keyframes faq-fade {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+</style>

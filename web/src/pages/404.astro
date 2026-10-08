@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Page not found . AM Electricals" description="Page not found." noindex>
+  <section class="container-x py-24 md:py-32 text-center">
+    <div class="meta text-obsidian-950/50 mb-4">404 · No signal</div>
+    <h1 class="tracking-[-0.035em] mb-6">This page doesn't exist.</h1>
+    <p class="text-[1.0625rem] text-steel-500 max-w-lg mx-auto mb-10">
+      The link might be old or mistyped. Try our panels page or ping us. We will point you to what you are looking for.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="/panels/" class="btn btn-primary-signal">
+        See all panels
+        <span class="btn-dot" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="/" class="btn btn-ghost text-obsidian-950/70 border-obsidian-950/15 hover:border-obsidian-950">Home</a>
+    </div>
+  </section>
+</BaseLayout>

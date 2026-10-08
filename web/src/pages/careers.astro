@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import LeadForm from '../components/LeadForm.astro';
+
+const openings = [
+  { role: 'AutoCAD Draughtsman', location: 'Kolkata / on-site', spec: 'LT / MV panel drawings, SLDs, GAs, wiring' },
+  { role: 'Sales Representative', location: 'Kolkata / East India', spec: 'B2B panel sales, EPC and consultant channels' },
+];
+---
+<BaseLayout
+  title="Careers at AM Electricals . Kolkata"
+  description="AutoCAD draughtsmen and sales rep openings at AM Electricals, Kolkata. Send your CV. We welcome applications year-round."
+>
+  <section class="container-x pt-10 pb-16 md:pb-24">
+    <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Careers' }]} />
+    <div class="grid gap-10 lg:grid-cols-12 items-start pt-2">
+      <div class="lg:col-span-7 fade-up">
+        <div class="meta text-ink-500 mb-5">Now hiring</div>
+        <h1 class="tracking-[-0.045em] mb-5 max-w-[18ch]">A workshop, not a call centre.</h1>
+        <p class="text-[1.0625rem] text-ink-600 leading-relaxed max-w-[54ch]">
+          A founder-led workshop that has been building panels for 34 years. If you enjoy real electrical engineering, you will fit here.
+        </p>
+
+        <div class="mt-10 space-y-3">
+          {openings.map((o, i) => (
+            <div class="card card-interactive p-5 flex items-start justify-between gap-4 fade-up" style={`transition-delay: ${i*80}ms;`}>
+              <div>
+                <div class="text-[16px] font-medium tracking-tight text-ink-900">{o.role}</div>
+                <div class="meta text-ink-500 mt-1">{o.location}</div>
+                <p class="text-[13.5px] text-ink-600 mt-2 max-w-md">{o.spec}</p>
+              </div>
+              <span class="shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full bg-signal-500 text-white">
+                <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12">
+          <div class="meta text-ink-500 mb-3">Why here</div>
+          <ul class="space-y-2.5 text-[14.5px] text-ink-600">
+            <li>Real panels, real customers. No channel-partner middle work.</li>
+            <li>Founder still on the shop floor. Decisions happen fast.</li>
+            <li>Multi-brand PLC + controller exposure (Siemens, AB, DEIF, ComAp, DSE).</li>
+            <li>Kolkata factory. No relocation required.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 fade-up" style="transition-delay: 100ms;">
+        <div class="meta text-ink-500 mb-4">Apply</div>
+        <LeadForm subject="Career application" />
+        <p class="meta text-ink-500 mt-4 text-center">Even if no role matches, send your CV.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,153 @@
+---
+import { site, googleForm } from '../data/site';
+
+interface Props {
+  variant?: 'card' | 'inline';
+  subject?: string;
+  panelOptions?: string[];
+  compact?: boolean;
+  dark?: boolean;
+}
+
+const {
+  variant = 'card',
+  subject = 'Panel enquiry from website',
+  panelOptions,
+  compact = false,
+  dark = false,
+} = Astro.props;
+
+const isCard = variant === 'card';
+const fieldClass = dark
+  ? 'w-full px-3.5 py-2.5 bg-white/[0.03] text-white placeholder-ink-500 border border-white/10 rounded-md focus:border-signal-300 focus:outline-none focus:ring-0 transition-colors duration-300 text-[14px]'
+  : 'w-full px-3.5 py-2.5 bg-white text-ink-900 placeholder-ink-400 border border-border-subtle rounded-md focus:border-ink-950 focus:outline-none focus:ring-0 transition-colors duration-300 text-[14px]';
+const labelClass = dark
+  ? 'block meta text-ink-300 mb-1.5'
+  : 'block meta text-ink-600 mb-1.5';
+---
+
+<form
+  class:list={[
+    isCard && !dark && 'card p-6 md:p-7',
+    isCard && dark && 'card-dark p-6 md:p-7',
+    'space-y-3.5',
+  ]}
+  data-lead-form
+  data-phone={site.phoneRaw}
+>
+  <input type="hidden" name="subject" value={subject} />
+  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" style="display:none" />
+
+  <div class="grid gap-3.5 sm:grid-cols-2">
+    <label class="block">
+      <span class={labelClass}>Full name</span>
+      <input name="name" type="text" required autocomplete="name" class={fieldClass} placeholder="Rahul Sharma" />
+    </label>
+    <label class="block">
+      <span class={labelClass}>Mobile</span>
+      <input name="phone" type="tel" required inputmode="tel" autocomplete="tel" pattern="[0-9+ -]{7,}" class={fieldClass} placeholder="+91-98••••" />
+    </label>
+  </div>
+
+  <label class="block">
+    <span class={labelClass}>Work email</span>
+    <input name="email" type="email" required autocomplete="email" class={fieldClass} placeholder="you@company.com" />
+  </label>
+
+  {panelOptions && panelOptions.length > 0 && (
+    <label class="block">
+      <span class={labelClass}>Panel type</span>
+      <select name="panel" required class={fieldClass}>
+        <option value="">Choose a panel</option>
+        {panelOptions.map(p => <option value={p}>{p}</option>)}
+      </select>
+    </label>
+  )}
+
+  {!compact && (
+    <label class="block">
+      <span class={labelClass}>How can we help</span>
+      <textarea name="message" rows="3" class={fieldClass} placeholder="SLD, kVA / A rating, timeline, site location" />
+    </label>
+  )}
+
+  <button type="submit" class="btn btn-accent w-full justify-center mt-2">
+    Send enquiry
+    <span class="btn-arrow" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </button>
+  <p class={dark ? 'meta text-ink-500 text-center' : 'meta text-ink-500 text-center'}>
+    Opens WhatsApp with your details pre-filled
+  </p>
+
+  <div data-lead-status class="hidden text-[13px] font-medium"></div>
+</form>
+
+<script>
+  import { googleForm } from '../data/site';
+
+  document.querySelectorAll<HTMLFormElement>('[data-lead-form]').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = form.querySelector<HTMLDivElement>('[data-lead-status]');
+      const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const phone = form.dataset.phone || '917003707013';
+      if (!status || !submitBtn) return;
+
+      const fd = new FormData(form);
+      const name = String(fd.get('name') || '');
+      const email = String(fd.get('email') || '');
+      const mobile = String(fd.get('phone') || '');
+      const panel = String(fd.get('panel') || '');
+      const message = String(fd.get('message') || '');
+      const subject = String(fd.get('subject') || 'Panel enquiry');
+
+      submitBtn.disabled = true;
+      const originalHtml = submitBtn.innerHTML;
+      submitBtn.textContent = 'Sending...';
+      status.className = 'text-[13px] font-medium text-ink-500';
+      status.textContent = '';
+      status.classList.remove('hidden');
+
+      try {
+        const gfd = new FormData();
+        gfd.append(googleForm.entries.name, name);
+        gfd.append(googleForm.entries.phone, mobile);
+        gfd.append(googleForm.entries.email, email);
+        if (panel) gfd.append(googleForm.entries.panel, panel);
+        if (message) gfd.append(googleForm.entries.message, message);
+
+        await fetch(googleForm.actionUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: gfd,
+        });
+
+        status.className = 'text-[13px] font-medium text-emerald-600';
+        status.textContent = 'Sent. Opening WhatsApp with your details.';
+
+        const waText = [
+          `Hello AM Electricals,`, ``, `Enquiry from website:`,
+          `Name: ${name}`, `Email: ${email}`, `Mobile: ${mobile}`,
+          panel ? `Panel: ${panel}` : '',
+          message ? `Details: ${message}` : '',
+          ``, `(Subject: ${subject})`,
+        ].filter(Boolean).join('\n');
+
+        setTimeout(() => {
+          window.open(`https://wa.me/${phone}?text=${encodeURIComponent(waText)}`, '_blank', 'noopener');
+        }, 400);
+
+        form.reset();
+      } catch (err) {
+        status.className = 'text-[13px] font-medium text-red-500';
+        const msg = err instanceof Error ? err.message : 'Send failed';
+        status.textContent = `Send failed: ${msg}. Try WhatsApp or call ${phone}.`;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHtml;
+      }
+    });
+  });
+</script>

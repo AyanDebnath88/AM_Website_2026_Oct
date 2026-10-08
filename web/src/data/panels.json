@@ -1,0 +1,712 @@
+[
+  {
+    "slug": "apfc-panel-manufacturer-kolkata",
+    "name": "APFC Panels",
+    "shortName": "APFC",
+    "tagline": "Thyristor APFC, 25 to 800 kVAR, IEC 61439-2",
+    "seoTitle": "APFC Panel Manufacturer in Kolkata | AM Electricals",
+    "seoDescription": "Thyristor and detuned APFC panels, 25 to 800 kVAR, IEC 61439-2. Built in Kolkata. Free PF audit across West Bengal, Jharkhand and Odisha.",
+    "keywordPrimary": "APFC panel manufacturer Kolkata",
+    "priority": 1,
+    "image": "/images/panels/apfc.jpg",
+    "specs": [
+      {
+        "label": "Type",
+        "value": "Thyristorised / Contactor / Hybrid"
+      },
+      {
+        "label": "kVAR range",
+        "value": "25 to 800 kVAR"
+      },
+      {
+        "label": "Voltage",
+        "value": "415 V, 3-phase, 4-wire"
+      },
+      {
+        "label": "Steps",
+        "value": "6 / 8 / 12"
+      },
+      {
+        "label": "Standard",
+        "value": "IS/IEC 61439-2"
+      },
+      {
+        "label": "Protection",
+        "value": "IP54 indoor, IP65 outdoor"
+      },
+      {
+        "label": "Switching",
+        "value": "Zero-point (thyristor)"
+      }
+    ],
+    "features": [
+      "Thyristor zero-point switching. No inrush current, no capacitor stress on switching",
+      "Detuned reactor options at 7% and 14% for VFD-heavy loads",
+      "Auto changeover between EB and DG source, no manual reset",
+      "Powder-coated CRCA enclosure built for Bengal humidity",
+      "Reference designs CPRI type-tested at 6000A"
+    ],
+    "gallery": [
+      "/images/panels/apfc-1.jpg",
+      "/images/panels/apfc-2.jpg",
+      "/images/panels/apfc-3.jpg",
+      "/images/panels/apfc-4.jpg"
+    ],
+    "industries": [
+      "Jute and textile mills",
+      "Cold storage",
+      "Manufacturing",
+      "Hospitals",
+      "Commercial buildings",
+      "Data centres"
+    ],
+    "compliance": [
+      "IS 8623",
+      "IEC 61439-2",
+      "CPRI type-tested",
+      "ISO 9001"
+    ],
+    "overview": "Power factor below 0.95 draws a penalty on most industrial tariffs. An APFC panel switches capacitor banks in steps to hold the plant's power factor near unity automatically, no manual switching. Thyristor-switched stages avoid the capacitor inrush that blows fuses on contactor-switched panels; detuned reactors are added where harmonic-heavy loads like VFDs and UPS are already on the bus."
+  },
+  {
+    "slug": "mcc-panel-manufacturer",
+    "name": "MCC Panels",
+    "shortName": "MCC",
+    "tagline": "Motor Control Centre, IS 8623, 65 kA / 1s withstand",
+    "seoTitle": "MCC Panel Manufacturer India | IS 8623, Form 4b",
+    "seoDescription": "Motor Control Centre panels to IS 8623, 65 kA / 1s. Single or double front, IP54/IP55, Form 2b to 4b. BMS ready. Made in Kolkata.",
+    "keywordPrimary": "MCC PCC panel India",
+    "priority": 1,
+    "image": "/images/panels/mcc-4.jpg",
+    "specs": [
+      {
+        "label": "Standard",
+        "value": "IS 8623 / IEC 61439-2"
+      },
+      {
+        "label": "Short-circuit withstand",
+        "value": "65 kA for 1 second"
+      },
+      {
+        "label": "Protection",
+        "value": "IP54 / IP55"
+      },
+      {
+        "label": "Configurations",
+        "value": "Single-front, Double-front"
+      },
+      {
+        "label": "Feeder types",
+        "value": "DOL, Star-Delta, VFD, Soft-start"
+      },
+      {
+        "label": "Form segregation",
+        "value": "Form 2b / 3b / 4b on request"
+      },
+      {
+        "label": "Integration",
+        "value": "BMS and SCADA ready"
+      }
+    ],
+    "features": [
+      "Fixed and draw-out feeder options in the same lineup",
+      "Wired for Siemens, Schneider, L&T or ABB switchgear as you spec it",
+      "Vertical bus spacing rated for the fault level, not the datasheet minimum",
+      "Type-tested reference designs available on request"
+    ],
+    "gallery": [
+      "/images/panels/mcc-4.jpg"
+    ],
+    "industries": [
+      "Cement",
+      "Steel and foundry",
+      "Water treatment",
+      "Chemical and pharma",
+      "Manufacturing",
+      "Data centres"
+    ],
+    "compliance": [
+      "IS 8623",
+      "IEC 61439-2",
+      "CPRI 6000A",
+      "ISO 9001"
+    ],
+    "overview": "An MCC groups every motor starter on a plant or floor into one panel, each feeder isolated behind its own door so one motor fault or maintenance job doesn't need a full shutdown. Form 4b segregation keeps live busbar separated from the feeder compartment — the detail that actually gets checked in a safety audit."
+  },
+  {
+    "slug": "pcc-panel-manufacturer",
+    "name": "PCC Panels",
+    "shortName": "PCC",
+    "tagline": "Power Control Centre, up to 4000 A, IS 8623",
+    "seoTitle": "PCC Panel Manufacturer India | 4000A, IEC 61439",
+    "seoDescription": "Power Control Centre panels up to 4000 A at 415 V, 3-phase 4-wire. IS 8623, 65 kA / 1s. Single or double front, load scheduling built in.",
+    "keywordPrimary": "PCC panel manufacturer",
+    "priority": 1,
+    "image": "/images/panels/pcc.jpg",
+    "specs": [
+      {
+        "label": "Current rating",
+        "value": "up to 4000 A"
+      },
+      {
+        "label": "Voltage",
+        "value": "415 V, 3-phase, 4-wire"
+      },
+      {
+        "label": "Standard",
+        "value": "IS 8623 / IEC 61439-2"
+      },
+      {
+        "label": "Short-circuit withstand",
+        "value": "65 kA for 1 second"
+      },
+      {
+        "label": "Protection",
+        "value": "IP54 / IP55"
+      },
+      {
+        "label": "Configurations",
+        "value": "Single-front, Double-front"
+      }
+    ],
+    "features": [
+      "Load scheduling drops non-critical feeders first when EB or DG is overloaded",
+      "CRCA sheet with powder coat, not painted MS. Bengal-climate rated",
+      "Incoming and outgoing feeder layout planned around your operator, not our drawing template",
+      "ACB or MCCB incomer to consultant spec"
+    ],
+    "gallery": [
+      "/images/panels/pcc-1.jpg",
+      "/images/panels/pcc-2.jpg"
+    ],
+    "industries": [
+      "Cement",
+      "Steel",
+      "Manufacturing",
+      "Utilities",
+      "Chemical and pharma",
+      "Commercial buildings"
+    ],
+    "compliance": [
+      "IS 8623",
+      "IEC 61439-2",
+      "CPRI 6000A",
+      "ISO 9001"
+    ],
+    "overview": "A PCC sits upstream of the MCC, taking the incoming supply and splitting it into outgoing feeders for distribution boards, large motors and the MCC itself. At this current rating a fault has to clear in cycles not seconds, so busbar bracing and breaker discrimination are checked against the full prospective short-circuit current, not just the panel's own rating."
+  },
+  {
+    "slug": "amf-dg-sync-panels",
+    "name": "AMF & DG Sync Panels",
+    "shortName": "AMF/DG Sync",
+    "tagline": "AMF plus DG synchronisation, 10 to 2500 kVA",
+    "seoTitle": "AMF & DG Sync Panel Supplier | 10 to 2500 kVA",
+    "seoDescription": "AMF and DG sync panels, 10 to 2500 kVA. DEIF, ComAp, DSE or Woodward. Multi-DG load sharing, grid parallel, FAT tested before dispatch.",
+    "keywordPrimary": "AMF DG sync panel supplier",
+    "priority": 1,
+    "image": "/images/panels/amf-dg-sync.jpg",
+    "specs": [
+      {
+        "label": "kVA range",
+        "value": "10 to 2500 kVA"
+      },
+      {
+        "label": "Configuration",
+        "value": "Double busbar for multi-DG"
+      },
+      {
+        "label": "Controllers",
+        "value": "DEIF, ComAp, DSE, Woodward"
+      },
+      {
+        "label": "Modes",
+        "value": "AMF, Manual, Load Share, Grid Parallel"
+      },
+      {
+        "label": "Load sharing",
+        "value": "Droop or Isochronous, kW plus kVAR"
+      }
+    ],
+    "features": [
+      "Multi-DG start, sync and priority handover without an operator on the panel",
+      "EB fail auto-transfer and auto-restore, tuned to your no-break window",
+      "Controller-agnostic. We wire on the brand your service engineer already carries",
+      "FAT before dispatch. Test sheet, SLD, GA and wiring drawings in the file"
+    ],
+    "gallery": [
+      "/images/panels/amf-1.jpg",
+      "/images/panels/amf-2.jpg",
+      "/images/panels/amf-3.jpg"
+    ],
+    "industries": [
+      "Hospitals",
+      "Data centres",
+      "Hotels and hospitality",
+      "Malls and commercial",
+      "Manufacturing",
+      "Telecom"
+    ],
+    "compliance": [
+      "IS/IEC 60947-6-2",
+      "DEIF / ComAp / DSE certified",
+      "ISO 9001"
+    ],
+    "overview": "An AMF panel's only job is to start the standby genset and transfer load the moment mains fails, then transfer back and shut down cleanly when mains returns. Sync panels add the extra step of phase-matching multiple DGs, or a DG to the grid, before closing the breaker — get that wrong and you're closing two live sources out of phase onto the same bus."
+  },
+  {
+    "slug": "plc-automation-panels",
+    "name": "PLC Automation Panels",
+    "shortName": "PLC",
+    "tagline": "Multi-brand PLC panels, any major platform",
+    "seoTitle": "PLC Automation Panel Manufacturer | Siemens, AB, Delta",
+    "seoDescription": "PLC panels with Siemens S7, Allen-Bradley, Mitsubishi, Delta or Schneider. HMI and SCADA integration, ferruled wiring, FAT tested. Kolkata factory.",
+    "keywordPrimary": "PLC automation panel manufacturer",
+    "priority": 1,
+    "image": "/images/panels/plc-3.jpg",
+    "specs": [
+      {
+        "label": "PLC brands",
+        "value": "Siemens, Allen-Bradley, Mitsubishi, Delta, Schneider"
+      },
+      {
+        "label": "HMI options",
+        "value": "Weintek, Siemens KTP, Delta DOP"
+      },
+      {
+        "label": "SCADA",
+        "value": "Ignition, WinCC, iFIX ready"
+      },
+      {
+        "label": "Protocols",
+        "value": "Modbus TCP/RTU, Profinet, EtherNet/IP, OPC UA"
+      },
+      {
+        "label": "Wiring",
+        "value": "IEC ferruled harness, UL 508A on request"
+      }
+    ],
+    "features": [
+      "Multi-brand integrator. We spec the right PLC for your plant, not the one we resell",
+      "Baseline of 16DI / 16DO / 8AI, scaling to 128+ point systems",
+      "Redundant CPU and dual power for critical process",
+      "Deliverables in every file: SLD, GA, BOM, wiring, FAT protocol"
+    ],
+    "gallery": [
+      "/images/panels/plc-3.jpg"
+    ],
+    "industries": [
+      "Food and beverage",
+      "Pharma",
+      "Chemical",
+      "Water treatment",
+      "Cement",
+      "Material handling"
+    ],
+    "compliance": [
+      "IEC 61439",
+      "UL 508A on request",
+      "ISO 9001"
+    ],
+    "overview": "A PLC panel replaces relay logic with a programmable controller, so sequencing changes become a program edit instead of a rewiring job. We wire to the PLC and HMI brand your maintenance team already knows, because a panel nobody on site can reprogram is a liability, not an asset."
+  },
+  {
+    "slug": "hvac-control-panels",
+    "name": "HVAC Control Panels",
+    "shortName": "HVAC",
+    "tagline": "BMS-ready HVAC starters, VFD provision",
+    "seoTitle": "HVAC Control Panels India | BMS Ready | AM Electricals",
+    "seoDescription": "HVAC control panels with fuse-less Type-2 starters, BMS-ready wiring and VFD bypass provision. Built to consultant spec in Kolkata.",
+    "keywordPrimary": "HVAC control panel manufacturer",
+    "priority": 2,
+    "image": "/images/panels/hvac.jpg",
+    "specs": [
+      {
+        "label": "Starter type",
+        "value": "Fuse-less, Type-2 coordinated"
+      },
+      {
+        "label": "Integration",
+        "value": "BMS via potential-free contacts"
+      },
+      {
+        "label": "VFD",
+        "value": "Auto/manual, local/remote, bypass optional"
+      },
+      {
+        "label": "Incomer",
+        "value": "MCB, MCCB or MPCB per consultant spec"
+      }
+    ],
+    "features": [
+      "Auto and manual variants on the same drawing set",
+      "BMS wiring standard, not an extra line item",
+      "Modular layout so you can add starters on site without a redesign",
+      "Built to Blue Star, DKK and Voltas consultant specs we already know"
+    ],
+    "gallery": [
+      "/images/panels/hvac-1.jpg",
+      "/images/panels/hvac-2.jpg"
+    ],
+    "industries": [
+      "Commercial buildings",
+      "Hospitals",
+      "Data centres",
+      "Hotels",
+      "Malls",
+      "Pharma"
+    ],
+    "compliance": [
+      "IEC 61439",
+      "BMS compatible",
+      "ISO 9001"
+    ],
+    "overview": "HVAC starter panels run chillers, pumps and AHU fans against a building's BMS, typically with Type-2 coordinated starters so a fault lets go clean without damaging the contactor. VFD bypass wiring is built in from day one, so a drive failure doesn't take the whole air-handling unit down with it."
+  },
+  {
+    "slug": "ahu-metering-panels",
+    "name": "AHU & Metering Panels",
+    "shortName": "AHU/Metering",
+    "tagline": "AHU starter plus tenant metering, BMS-ready",
+    "seoTitle": "AHU & Metering Panels | BMS Compatible | AM Electricals",
+    "seoDescription": "AHU panels with Type-2 coordinated starters and multi-function metering per feeder. Modbus over RS-485 or Ethernet. BMS ready.",
+    "keywordPrimary": "AHU panel manufacturer",
+    "priority": 2,
+    "image": "/images/panels/ahu.jpg",
+    "specs": [
+      {
+        "label": "Starter",
+        "value": "Fuse-less, Type-2 coordinated"
+      },
+      {
+        "label": "Metering",
+        "value": "Multi-function meter per feeder (Schneider, Selec or L&T)"
+      },
+      {
+        "label": "Comms",
+        "value": "Modbus RTU / TCP on RS-485 or Ethernet"
+      },
+      {
+        "label": "Integration",
+        "value": "BMS with feeder-level energy monitoring"
+      }
+    ],
+    "features": [
+      "Meter per feeder for tenant billing or EnMS reporting",
+      "VFD bypass wired in when the drive matters more than the driven load",
+      "Local/remote and auto/manual selectors on the door",
+      "Terminal blocks sized for site retrofits, not just the day-one BOQ"
+    ],
+    "gallery": [
+      "/images/panels/ahu-1.jpg"
+    ],
+    "industries": [
+      "Commercial buildings",
+      "Data centres",
+      "Hospitals",
+      "Hotels",
+      "Malls"
+    ],
+    "compliance": [
+      "IEC 61439",
+      "BMS and energy metering",
+      "ISO 9001"
+    ],
+    "overview": "Where an HVAC panel runs the fan, an AHU metering panel accounts for what each tenant or floor actually drew, over Modbus to the building's energy management system. Getting the CT ratio and metering class right the first time avoids a billing dispute six months after handover."
+  },
+  {
+    "slug": "industrial-control-desks",
+    "name": "Industrial Control Desks",
+    "shortName": "Control Desks",
+    "tagline": "Floor or wall-mount desks, IP-55, iron alloy",
+    "seoTitle": "Industrial Control Desks India | AM Electricals",
+    "seoDescription": "Customised industrial control desks, floor-standing or wall-mounted. IP-55, iron alloy body, button and mimic layout to your process.",
+    "keywordPrimary": "industrial control desk manufacturer",
+    "priority": 3,
+    "image": "/images/panels/control-desk-2.jpg",
+    "specs": [
+      {
+        "label": "Protection",
+        "value": "IP-55"
+      },
+      {
+        "label": "Mounting",
+        "value": "Floor-standing or Wall-mounted"
+      },
+      {
+        "label": "Construction",
+        "value": "Iron alloy, powder-coated"
+      },
+      {
+        "label": "Operation",
+        "value": "Buttons with optional mimic panel"
+      }
+    ],
+    "features": [
+      "Dimensions and cutouts drawn to your operator ergonomics",
+      "Mimic and indicator layout planned before we cut the plate",
+      "Built to move. Sturdy, but liftable on shopfloor trolley"
+    ],
+    "gallery": [
+      "/images/panels/control-desk-2.jpg"
+    ],
+    "industries": [
+      "Manufacturing",
+      "Utilities",
+      "Cement",
+      "Steel",
+      "Water treatment"
+    ],
+    "compliance": [
+      "IEC 61439",
+      "IP-55",
+      "ISO 9001"
+    ],
+    "overview": "A control desk puts every start/stop, selector and mimic indicator for a process line at one operator position, laid out to the process rather than a standard template. IP-55 rating and an iron-alloy body hold up on a shopfloor where the desk gets leaned on daily."
+  },
+  {
+    "slug": "dg-control-panels",
+    "name": "DG Control Panels",
+    "shortName": "DG Control",
+    "tagline": "Single-DG monitoring and control, domestic to commercial",
+    "seoTitle": "DG Control Panel Manufacturer India | AM Electricals",
+    "seoDescription": "Single-DG control panels for domestic, commercial and small-industrial gensets. DSE and ComAp controllers, powder-coated CRCA body.",
+    "keywordPrimary": "DG control panel manufacturer",
+    "priority": 3,
+    "image": "/images/panels/dg-control.jpg",
+    "specs": [
+      {
+        "label": "Application",
+        "value": "Single-DG monitoring and control"
+      },
+      {
+        "label": "Segments",
+        "value": "Domestic, Commercial, Small-industrial"
+      },
+      {
+        "label": "Controllers",
+        "value": "DSE 4520, ComAp InteliLite or equivalent"
+      },
+      {
+        "label": "Construction",
+        "value": "Powder-coated CRCA, corrosion-resistant"
+      }
+    ],
+    "features": [
+      "Compact door layout that opens fully in a tight DG room",
+      "Long service life on the controller and the door hardware, not just the enclosure",
+      "Priced for a small building, not scaled down from an industrial panel"
+    ],
+    "gallery": [
+      "/images/panels/dg-control-1.jpg",
+      "/images/panels/dg-control-2.jpg",
+      "/images/panels/dg-control-3.jpg"
+    ],
+    "industries": [
+      "Commercial buildings",
+      "Residential",
+      "Hospitals",
+      "Hotels",
+      "Small industry"
+    ],
+    "compliance": [
+      "IS/IEC 60947",
+      "DSE / ComAp certified",
+      "ISO 9001"
+    ],
+    "overview": "A single-DG control panel is the simpler sibling to an AMF panel: monitoring and manual or auto-start control for one genset, without the load-transfer logic a full AMF panel needs. Right-sized for a housing complex or small factory where a dedicated changeover panel would be over-spec."
+  },
+  {
+    "slug": "fire-alarm-control-panels",
+    "name": "Fire Alarm Control Panels",
+    "shortName": "Fire Alarm",
+    "tagline": "Auto plus manual mode, 415 V, industrial-grade",
+    "seoTitle": "Fire Alarm Control Panel Manufacturer India | AM Electricals",
+    "seoDescription": "Fire alarm control panels for chemical, pharma, plastic and refinery sites. Auto plus manual, 415 V, wall or floor-mount, corrosion-resistant.",
+    "keywordPrimary": "fire alarm control panel manufacturer",
+    "priority": 2,
+    "image": "/images/panels/fire-alarm.jpg",
+    "specs": [
+      {
+        "label": "Voltage",
+        "value": "415 V"
+      },
+      {
+        "label": "Modes",
+        "value": "Auto plus Manual"
+      },
+      {
+        "label": "Mounting",
+        "value": "Wall-mounted or Floor-mounted"
+      },
+      {
+        "label": "Application",
+        "value": "Chemical, Plastic, Pharma, Oil Refineries"
+      }
+    ],
+    "features": [
+      "Auto activation on pressure drop, with manual override at the door",
+      "Corrosion-resistant enclosure for chemical and coastal sites",
+      "Terminated for the field wiring plan you already have"
+    ],
+    "gallery": [
+      "/images/panels/fire-alarm-1.jpg",
+      "/images/panels/fire-alarm-3.jpg",
+      "/images/panels/fire-alarm-4.jpg"
+    ],
+    "industries": [
+      "Chemical and petrochemical",
+      "Pharma",
+      "Plastic",
+      "Oil refineries",
+      "Warehousing"
+    ],
+    "compliance": [
+      "IS 2189",
+      "NBC 2016",
+      "ISO 9001"
+    ],
+    "overview": "Fire pump and detection control panels on a chemical, pharma or plastics site need to work in auto mode without an operator present, and in manual override when one is. Enclosure material and cable entry detail matter more here than on a standard panel, since the atmosphere it sits in is usually the reason the panel exists."
+  },
+  {
+    "slug": "power-distribution-panels",
+    "name": "Power Distribution Panels",
+    "shortName": "PDB",
+    "tagline": "Modular PDBs for public and industrial distribution",
+    "seoTitle": "Power Distribution Panels India | AM Electricals",
+    "seoDescription": "Modular power distribution panels and boards. Custom sizing to your SLD, segregated compartments, rust-resistant powder-coated body.",
+    "keywordPrimary": "power distribution panel manufacturer",
+    "priority": 3,
+    "image": "/images/panels/pdb-3.jpg",
+    "specs": [
+      {
+        "label": "Design",
+        "value": "Modular, segregated compartments"
+      },
+      {
+        "label": "Custom sizing",
+        "value": "Yes, to client single-line diagram"
+      },
+      {
+        "label": "Construction",
+        "value": "Rust-resistant powder-coated CRCA"
+      }
+    ],
+    "features": [
+      "Compartment spacing that a maintenance sparky can actually work in",
+      "Bus and feeder segregation kept honest, not just labelled",
+      "Rust-resistant body rated for our monsoon, not a marketing brochure"
+    ],
+    "gallery": [
+      "/images/panels/pdb-3.jpg"
+    ],
+    "industries": [
+      "Commercial buildings",
+      "Manufacturing",
+      "Utilities",
+      "Hospitals",
+      "Retail"
+    ],
+    "compliance": [
+      "IS 8623",
+      "IEC 61439",
+      "ISO 9001"
+    ],
+    "overview": "A PDB takes one incoming supply and splits it into multiple protected outgoing ways, sized to the load list and segregated so a downstream fault trips only its own way. It's the panel most buyers under-spec — the spare-way count that looked generous at handover rarely survives five years of additions."
+  },
+  {
+    "slug": "stp-etp-wtp-panels",
+    "name": "STP / ETP / WTP Panels",
+    "shortName": "STP/ETP/WTP",
+    "tagline": "Custom control panels for sewage, effluent and water",
+    "seoTitle": "STP ETP WTP Control Panels India | AM Electricals",
+    "seoDescription": "Custom control panels for STP, ETP and WTP plants. Relay or PLC sequence control, pump start-stop, level and pressure interlocks. Kolkata factory.",
+    "keywordPrimary": "STP ETP WTP control panel manufacturer",
+    "priority": 3,
+    "image": "/images/panels/stp-etp-wtp-6.jpg",
+    "specs": [
+      {
+        "label": "Applications",
+        "value": "STP (Sewage), ETP (Effluent), WTP (Water)"
+      },
+      {
+        "label": "Control",
+        "value": "Relay logic or PLC-based sequence"
+      },
+      {
+        "label": "Testing",
+        "value": "Full parameter test before dispatch"
+      }
+    ],
+    "features": [
+      "Sequence control, pump start-stop, level and pressure interlocks built to your P&ID",
+      "Relay logic for small plants, PLC and HMI upgrade path when the site scales",
+      "Panel wiring rated for STP room humidity, not office weather"
+    ],
+    "gallery": [
+      "/images/panels/stp-etp-wtp-4.jpg",
+      "/images/panels/stp-etp-wtp-5.jpg",
+      "/images/panels/stp-etp-wtp-6.jpg",
+      "/images/panels/stp-etp-wtp-7.jpg"
+    ],
+    "industries": [
+      "Municipal water",
+      "Industrial effluent",
+      "Hospitals",
+      "Hotels",
+      "Pharma",
+      "Food processing"
+    ],
+    "compliance": [
+      "IEC 61439",
+      "WBPCB / CPCB aligned",
+      "ISO 9001"
+    ],
+    "overview": "Water and effluent plant panels run pumps, blowers and dosing motors against level and pressure interlocks — usually relay logic for a simple lift station, PLC sequencing for a multi-stage plant. IP54 enclosures and corrosion-resistant hardware are standard here, not an upgrade, given where the panel lives."
+  },
+  {
+    "slug": "custom-control-panels",
+    "name": "Custom & Specialised Panels",
+    "shortName": "Custom",
+    "tagline": "Burner, boiler, BMB, ash handling. Built to your process",
+    "seoTitle": "Custom Control Panel Manufacturer | Burner, Boiler, Ash",
+    "seoDescription": "Custom control panels for burner (furnace), boiler (steam), BMB (small MCC) and ash handling. Engineered to your process. Made in Kolkata.",
+    "keywordPrimary": "custom control panel manufacturer",
+    "priority": 3,
+    "image": "/images/panels/custom-5.jpg",
+    "specs": [
+      {
+        "label": "Types",
+        "value": "Burner, Boiler, BMB, Ash Handling and more"
+      },
+      {
+        "label": "Applications",
+        "value": "Furnace, Steam, Small MCC, Cement and Ash"
+      },
+      {
+        "label": "Delivery",
+        "value": "Engineered-to-order"
+      }
+    ],
+    "features": [
+      "Interlocks and sequencing written for the process, not just the electrical BOQ",
+      "Sensor and actuator terminations planned with your instrumentation vendor",
+      "Documentation set for every job: SLD, GA, wiring, I/O list, FAT protocol"
+    ],
+    "gallery": [
+      "/images/panels/custom-5.jpg"
+    ],
+    "industries": [
+      "Cement (ash handling)",
+      "Boiler and steam",
+      "Furnace and burner",
+      "Material handling",
+      "Custom process"
+    ],
+    "compliance": [
+      "Engineered-to-order",
+      "IEC 61439 base",
+      "ISO 9001"
+    ],
+    "overview": "Burner, boiler, ash-handling and material-handling lines rarely match a catalogue panel, so these are built against the customer's own SLD and control philosophy rather than a standard spec sheet. If your process doesn't fit one of the other twelve panel types, this is the one we quote."
+  }
+]

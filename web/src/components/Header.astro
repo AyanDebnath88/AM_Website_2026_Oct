@@ -1,0 +1,148 @@
+---
+import { site, nav } from '../data/site';
+import panelsData from '../data/panels.json';
+
+const panels = panelsData as Array<{
+  slug: string;
+  name: string;
+  shortName: string;
+  priority: number;
+}>;
+
+const priorityPanels = panels.filter(p => p.priority === 1);
+const otherPanels = panels.filter(p => p.priority !== 1);
+const currentPath = Astro.url.pathname;
+---
+
+<header id="siteHeader" class="sticky top-0 z-40 border-b border-border-subtle bg-surface/85 backdrop-blur-md transition-colors duration-300">
+  <div class="container-x flex items-center justify-between gap-8 h-16">
+
+    <a href="/" class="flex items-center gap-2.5 no-underline shrink-0" aria-label="AM Electricals home">
+      <img src="/logo.png" alt="" class="w-8 h-8 rounded-md" width="32" height="32" />
+      <span class="hidden sm:flex flex-col leading-tight">
+        <span class="text-[13px] font-medium tracking-tight text-ink-900">AM Electricals</span>
+        <span class="meta text-[9.5px] text-ink-500">Since 1991 · Kolkata</span>
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
+      {nav.primary.map(item => (
+        <div class="relative group">
+          <a
+            href={item.href}
+            class:list={[
+              'inline-flex items-center px-3 py-1.5 text-[13.5px] font-medium rounded-md transition-colors duration-300',
+              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+                ? 'text-ink-950 bg-ink-900/[0.04]'
+                : 'text-ink-600 hover:text-ink-950',
+            ]}
+          >
+            {item.label}
+          </a>
+
+          {item.href === '/panels/' && (
+            <div class="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-[540px] origin-top opacity-0 invisible scale-95 pointer-events-none transition-[opacity,transform,visibility] duration-150 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:opacity-100 group-hover:visible group-hover:scale-100 group-hover:pointer-events-auto">
+              <div class="card p-6 grid grid-cols-2 gap-8 shadow-[0_20px_50px_-20px_rgba(10,10,10,0.15)]">
+                <div>
+                  <p class="meta mb-3">Priority</p>
+                  <ul class="space-y-2">
+                    {priorityPanels.map(p => (
+                      <li>
+                        <a href={`/panels/${p.slug}/`} class="text-[13.5px] text-ink-800 hover:text-signal-600 no-underline transition-colors duration-300">{p.name}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p class="meta mb-3">Specialised</p>
+                  <ul class="space-y-2">
+                    {otherPanels.map(p => (
+                      <li>
+                        <a href={`/panels/${p.slug}/`} class="text-[13.5px] text-ink-800 hover:text-signal-600 no-underline transition-colors duration-300">{p.name}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+
+    <div class="hidden md:flex items-center gap-3">
+      <a href={`tel:${site.phone}`} class="hidden xl:inline-flex text-[13px] font-mono text-ink-700 hover:text-ink-950 no-underline">
+        {site.phone}
+      </a>
+      <a href={nav.cta.href} class="btn btn-accent">
+        {nav.cta.label}
+        <span class="btn-arrow" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <button
+      id="menuBtn"
+      class="lg:hidden inline-flex items-center justify-center w-9 h-9 text-ink-900 rounded-md hover:bg-ink-900/5"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobileNav"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5">
+        <line x1="4" y1="8" x2="20" y2="8" />
+        <line x1="4" y1="16" x2="20" y2="16" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobileNav" hidden class="fixed inset-0 z-50 lg:hidden bg-ink-950/97 backdrop-blur-xl">
+  <div class="container-x pt-24 pb-12 h-full flex flex-col">
+    <button
+      id="menuCloseBtn"
+      class="absolute top-5 right-5 w-9 h-9 inline-flex items-center justify-center rounded-md text-signal-300 hover:bg-white/5"
+      aria-label="Close menu"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+    <nav class="flex flex-col gap-2 mt-4" aria-label="Mobile">
+      {nav.primary.map(item => (
+        <a
+          href={item.href}
+          class="py-3 text-3xl font-medium tracking-tight text-white no-underline hover:text-signal-300"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <div class="mt-auto space-y-3">
+      <a href={nav.cta.href} class="btn btn-accent w-full justify-center">
+        {nav.cta.label}
+        <span class="btn-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href={`tel:${site.phone}`} class="block text-center text-sm font-mono text-signal-300 no-underline">
+        {site.phone}
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementById('menuBtn');
+  const closeBtn = document.getElementById('menuCloseBtn');
+  const menu = document.getElementById('mobileNav');
+  function toggle(open: boolean) {
+    if (!menu || !btn) return;
+    btn.setAttribute('aria-expanded', String(open));
+    menu.hidden = !open;
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn?.addEventListener('click', () => toggle(true));
+  closeBtn?.addEventListener('click', () => toggle(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu?.hidden) toggle(false);
+  });
+</script>

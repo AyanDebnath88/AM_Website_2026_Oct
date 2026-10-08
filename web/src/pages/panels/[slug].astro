@@ -1,0 +1,290 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SpecTable from '../../components/SpecTable.astro';
+import FAQ from '../../components/FAQ.astro';
+import CertBadges from '../../components/CertBadges.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import PanelCard from '../../components/PanelCard.astro';
+import PanelGallery from '../../components/PanelGallery.astro';
+import IndustryChips from '../../components/IndustryChips.astro';
+import ComplianceStrip from '../../components/ComplianceStrip.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { site } from '../../data/site';
+import panelsData from '../../data/panels.json';
+
+interface Panel {
+  slug: string;
+  name: string;
+  shortName: string;
+  tagline: string;
+  seoTitle: string;
+  seoDescription: string;
+  overview?: string;
+  image: string;
+  priority: number;
+  specs: { label: string; value: string }[];
+  features: string[];
+  gallery?: string[];
+  industries?: string[];
+  compliance?: string[];
+}
+
+export async function getStaticPaths() {
+  const panels = panelsData as Panel[];
+  return panels.map(p => ({ params: { slug: p.slug }, props: { panel: p } }));
+}
+
+interface Props { panel: Panel; }
+const { panel } = Astro.props;
+const panels = panelsData as Panel[];
+const related = panels.filter(p => p.slug !== panel.slug).slice(0, 3);
+const heroImage = panel.image && panel.image.length > 0 ? panel.image : `https://picsum.photos/seed/am-${panel.slug}/1200/1500`;
+const heroSlides = (panel.gallery && panel.gallery.length > 1) ? panel.gallery.slice(0, 5) : [heroImage];
+const idx = panelsData.findIndex((p:any) => p.slug === panel.slug) + 1;
+
+const defaultFaqs = [
+  {
+    q: `What standard are AM Electricals ${panel.shortName} panels built to?`,
+    a: `We build to IS 8623 (aligned with IEC 61439-2), with CPRI 6000A type-tested designs available and an ISO 9001 quality process throughout. Full type-test evidence is available on request.`,
+  },
+  {
+    q: `Can you customise the ${panel.shortName} panel to a specific SLD?`,
+    a: `Yes. Every non-standard job is engineered to your single-line diagram, with BOQ, GA and wiring drawings reviewed by our founder before build starts.`,
+  },
+  {
+    q: `What is the typical lead time from PO?`,
+    a: `Standard panels ship in 3 to 5 weeks. Custom builds are quoted with a firm delivery commitment. Same-week site visits across West Bengal, Jharkhand, Odisha and the Northeast.`,
+  },
+  {
+    q: `Do you offer commissioning and FAT support?`,
+    a: `Yes. FAT runs at our Kolkata factory before dispatch, and site commissioning support is available for orders across India.`,
+  },
+];
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${panel.name} . ${site.name}`,
+  description: panel.seoDescription,
+  brand: { '@type': 'Brand', name: site.name },
+  image: `https://www.amelectricals.co.in${heroImage.startsWith('http') ? '' : heroImage}`,
+  manufacturer: {
+    '@type': 'Organization',
+    name: site.name,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.street,
+      addressLocality: site.address.city,
+      postalCode: site.address.postcode,
+      addressRegion: site.address.state,
+      addressCountry: 'IN',
+    },
+  },
+  category: 'Industrial control panel',
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: defaultFaqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.amelectricals.co.in/' },
+    { '@type': 'ListItem', position: 2, name: 'Panels', item: 'https://www.amelectricals.co.in/panels/' },
+    { '@type': 'ListItem', position: 3, name: panel.name, item: `https://www.amelectricals.co.in/panels/${panel.slug}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={panel.seoTitle}
+  description={panel.seoDescription}
+  schema={[productSchema, faqSchema, breadcrumbSchema]}
+  ogImage={heroImage.startsWith('http') ? heroImage : heroImage}
+  preloadHero={heroImage.startsWith('/') ? heroImage : undefined}
+>
+  <!-- HERO -->
+  <section class="container-x pt-10 pb-20 md:pb-28">
+    <Breadcrumb items={[
+      { label: 'Home', href: '/' },
+      { label: 'Panels', href: '/panels/' },
+      { label: panel.name },
+    ]} />
+
+    <div class="grid gap-10 lg:grid-cols-12 items-start pt-2">
+      <div class="lg:col-span-7 lg:pr-6 fade-up">
+        <div class="meta text-ink-500 mb-5">Panel {String(idx).padStart(2,'0')} / 13</div>
+        <h1 class="tracking-[-0.04em] mb-5">{panel.name}</h1>
+        <p class="text-[1.125rem] text-ink-600 leading-relaxed max-w-[54ch] mb-8">
+          {panel.tagline}. Built in our Kolkata factory to IS 8623 / IEC 61439-2, with CPRI 6000A type-tested design references.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-8">
+          <a href="/quote/" class="btn btn-accent">
+            Get a quote
+            <span class="btn-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href={site.whatsappPrefill(panel.name)} class="btn btn-ghost" target="_blank" rel="noopener">
+            WhatsApp us
+          </a>
+        </div>
+        <CertBadges />
+      </div>
+
+      <div class="lg:col-span-5 fade-up" style="transition-delay: 100ms;">
+        <div class="card overflow-hidden">
+          <div class="panel-hero-slider aspect-[4/5] bg-ink-100 relative">
+            {heroSlides.map((src, i) => (
+              <img
+                src={src}
+                alt={panel.name}
+                class:list={['absolute inset-0 w-full h-full object-cover', heroSlides.length > 1 && 'panel-hero-slide']}
+                style={heroSlides.length > 1 ? `animation-duration: ${heroSlides.length * 7}s; animation-delay: ${i * -7}s;` : undefined}
+                loading={i === 0 ? undefined : 'lazy'}
+                fetchpriority={i === 0 ? 'high' : undefined}
+              />
+            ))}
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/50 to-transparent"></div>
+            <div class="absolute left-5 bottom-5 right-5">
+              <div class="card-dark p-4 backdrop-blur-md bg-ink-950/70">
+                <div class="meta text-signal-300 mb-1">On the shopfloor</div>
+                <div class="text-white text-[13.5px] font-mono">{panel.shortName} · {panel.specs[0]?.value || panel.name}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {heroSlides.length > 1 && (
+    <style>
+      @media (prefers-reduced-motion: no-preference) {
+        .panel-hero-slide {
+          opacity: 0;
+          animation-name: panel-hero-fade;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+        }
+        @keyframes panel-hero-fade {
+          0%   { opacity: 0; }
+          6%   { opacity: 1; }
+          25%  { opacity: 1; }
+          31%  { opacity: 0; }
+          100% { opacity: 0; }
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .panel-hero-slide:not(:first-child) { opacity: 0; }
+        .panel-hero-slide:first-child { opacity: 1; }
+      }
+    </style>
+  )}
+
+  <!-- OVERVIEW -->
+  {panel.overview && (
+    <section class="container-x pb-20 md:pb-24 -mt-6">
+      <div class="max-w-3xl">
+        <p class="text-[1.0625rem] text-ink-600 leading-relaxed">{panel.overview}</p>
+      </div>
+    </section>
+  )}
+
+  <!-- SPECS + FEATURES -->
+  <section class="bg-ink-950 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
+    <div class="container-x py-20 md:py-24 relative">
+      <div class="grid gap-12 lg:grid-cols-12 items-start">
+        <div class="lg:col-span-7 fade-up">
+          <div class="meta text-signal-300 mb-4">Specifications</div>
+          <h2 class="text-white tracking-[-0.03em] mb-8">What's inside.</h2>
+          <SpecTable specs={panel.specs} dark />
+        </div>
+        <div class="lg:col-span-5 lg:pl-4 fade-up" style="transition-delay: 100ms;">
+          <div class="meta text-signal-300 mb-4">Key features</div>
+          <h2 class="text-white tracking-[-0.03em] mb-8">Why we built it this way.</h2>
+          <ul class="space-y-4">
+            {panel.features.map(f => (
+              <li class="flex gap-3 text-[15px] text-ink-300 leading-relaxed">
+                <span class="mt-2 w-1 h-1 rounded-full bg-signal-500 shrink-0"></span>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY + INDUSTRIES + COMPLIANCE -->
+  {(panel.gallery && panel.gallery.length > 0) && (
+    <section class="container-x py-20 md:py-24">
+      <div class="grid gap-10 lg:grid-cols-12 items-start mb-10">
+        <div class="lg:col-span-4">
+          <div class="meta text-ink-500 mb-4">Shopfloor</div>
+          <h2 class="tracking-[-0.03em] max-w-[14ch]">Real builds, real installs.</h2>
+        </div>
+        <div class="lg:col-span-8 space-y-6">
+          {panel.compliance && panel.compliance.length > 0 && (
+            <ComplianceStrip items={panel.compliance} />
+          )}
+          {panel.industries && panel.industries.length > 0 && (
+            <div>
+              <div class="meta text-ink-500 mb-3">Best suited for</div>
+              <IndustryChips industries={panel.industries} />
+            </div>
+          )}
+        </div>
+      </div>
+      <PanelGallery images={panel.gallery} panelName={panel.name} />
+    </section>
+  )}
+
+  <!-- FAQ -->
+  <section class="container-x py-20 md:py-24">
+    <div class="grid gap-12 lg:grid-cols-12 items-start">
+      <div class="lg:col-span-4 fade-up">
+        <div class="meta text-ink-500 mb-4">Frequently asked</div>
+        <h2 class="tracking-[-0.03em] max-w-[16ch]">Answers before you ask.</h2>
+      </div>
+      <div class="lg:col-span-8 fade-up" style="transition-delay: 100ms;">
+        <FAQ items={defaultFaqs} />
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD -->
+  <section class="bg-ink-950 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
+    <div class="container-x py-20 md:py-24 relative grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-6 fade-up">
+        <div class="meta text-signal-300 mb-4">{panel.shortName} enquiry</div>
+        <h2 class="text-white tracking-[-0.03em] mb-6 max-w-[14ch]">Send us your spec.</h2>
+        <p class="text-ink-300 leading-relaxed text-[1.0625rem] max-w-[42ch]">
+          Attach SLD, load list or a photo of the existing panel over WhatsApp. Reply within one business day.
+        </p>
+      </div>
+      <div class="lg:col-span-6 lg:pl-4 fade-up" style="transition-delay: 100ms;">
+        <LeadForm subject={`${panel.name} quote request`} dark />
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="container-x py-20 md:py-24">
+    <div class="flex items-end justify-between mb-8">
+      <h2 class="tracking-[-0.03em]">Related panels</h2>
+      <a href="/panels/" class="hidden sm:inline-flex text-[14px] font-medium text-ink-800 no-underline hover:text-signal-600">See all 13 →</a>
+    </div>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {related.map((p, i) => (
+        <PanelCard slug={p.slug} name={p.name} tagline={p.tagline} image={p.image} index={i+1} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

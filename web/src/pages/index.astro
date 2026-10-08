@@ -1,0 +1,356 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from '../components/LeadForm.astro';
+import PanelCard from '../components/PanelCard.astro';
+import CertBadges from '../components/CertBadges.astro';
+import IndustryChips from '../components/IndustryChips.astro';
+import { site } from '../data/site';
+import panelsData from '../data/panels.json';
+
+// Aggregate + dedupe industries across all panels for the Home "Industries served" strip
+const allIndustries = Array.from(new Set(
+  (panelsData as any[]).flatMap(p => (p.industries as string[] | undefined) || [])
+));
+
+const panels = panelsData as Array<{
+  slug: string;
+  name: string;
+  shortName: string;
+  tagline: string;
+  image: string;
+  priority: number;
+}>;
+const priorityPanels = panels.filter(p => p.priority === 1);
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: 'https://www.amelectricals.co.in/',
+  foundingDate: `${site.established}-01-01`,
+  founder: { '@type': 'Person', name: site.founder },
+  telephone: site.phone,
+  email: site.email,
+};
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://www.amelectricals.co.in/#localbusiness',
+  name: site.name,
+  telephone: site.phone,
+  priceRange: '₹₹',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    postalCode: site.address.postcode,
+    addressRegion: site.address.state,
+    addressCountry: 'IN',
+  },
+};
+
+const capabilities = [
+  { title: 'Standards-first', body: 'IS 8623 / IEC 61439-2 as standard. Form 4b segregation on MCC and PCC. CPRI 6000A type-tested designs.', icon: 'shield' },
+  { title: 'Controller-agnostic DG sync', body: 'Any major DG synchronising controller brand. We build on your regional service ecosystem, not our lock-in.', icon: 'network' },
+  { title: 'Multi-brand PLC integrator', body: 'Any major PLC and HMI brand your plant already runs. Right fit for your site, not ours.', icon: 'chip' },
+  { title: 'Founder-approved', body: 'Ajit Debnath reviews every non-standard job. Escalations land on his phone, not a call centre.', icon: 'signature' },
+];
+
+const numbers = [
+  { k: '34', s: 'yrs', v: 'in business' },
+  { k: '5,000', s: 'sqft', v: 'Kolkata factory' },
+  { k: '13', s: '', v: 'panel families' },
+  { k: '65', s: 'kA / 1s', v: 'MCC / PCC withstand' },
+];
+
+const heroSlides = [
+  { image: '/images/panels/hero-lt-distribution.jpg', alt: 'AM Electricals LT distribution panel lineup, 4-section, on the Kolkata shopfloor', title: 'LT Distribution . 4-section lineup', spec: 'Form 4b . IP 55 . draw-out' },
+  { image: '/images/panels/hero-main-distribution.jpg', alt: 'AM Electricals main power distribution panel on the Kolkata shopfloor', title: 'Power Distribution . Main panel', spec: 'Multi-way, MCB + isolator feeders' },
+  { image: '/images/panels/hero-filter-house.jpg', alt: 'AM Electricals filter house control panel for water treatment', title: 'STP / ETP / WTP . Filter house panel', spec: 'Pump + dosing motor control, IP 54' },
+  { image: '/images/panels/hero-fire-pump.jpg', alt: 'AM Electricals fire pump control panel', title: 'Fire Pump Panel . Life safety', spec: 'Jockey + main pump auto-changeover' },
+  { image: '/images/panels/hero-switchgear-2k.jpg', alt: 'AM Electricals LT switchgear panel lineup on the Kolkata shopfloor', title: 'LT Switchgear . Multi-section', spec: 'ACB incomer . busbar rated to spec' },
+];
+---
+
+<BaseLayout
+  title={`${site.name} . Control Panel Manufacturer, Kolkata . Since 1991`}
+  description="AM Electricals . CPRI 6000A and ISO 9001 certified control panel manufacturer in Kolkata. APFC, MCC, PCC, PLC, AMF/DG sync panels. 34 years, pan-India delivery."
+  schema={[orgSchema, localBusinessSchema]}
+  preloadHero="/images/panels/hero-switchboard.jpg"
+>
+
+  <!-- HERO · full-bleed product photography, corporate switchgear language -->
+  <section class="relative overflow-hidden bg-ink-950">
+    <div class="grid lg:grid-cols-[minmax(0,1fr)_46%] min-h-[640px]">
+
+      <div class="relative z-10 flex flex-col justify-center px-6 py-16 md:px-12 lg:px-16 md:py-20 fade-up">
+        <div class="mb-6 flex items-center gap-3">
+          <span class="h-px w-8 bg-signal-500"></span>
+          <span class="meta text-ink-400">Kolkata . Since 1991</span>
+        </div>
+
+        <h1 class="mb-6 max-w-[15ch] text-white">
+          Control panels built in Kolkata since 1991.
+        </h1>
+
+        <p class="text-[1.0625rem] md:text-[1.1875rem] text-ink-300 leading-[1.55] max-w-[46ch] mb-8 font-normal">
+          APFC, MCC, PCC, PLC automation and DG-sync panels engineered in our 5,000 sqft Kolkata factory. IS 8623 . IEC 61439-2 . CPRI 6000A type-tested. Founder-led for 34 years.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 mb-8">
+          <a href="/quote/" class="btn btn-accent">
+            Get a free quote
+            <span class="btn-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+          <a href="/panels/" class="btn btn-ghost-on-dark">Browse 13 panel families</a>
+        </div>
+
+        <CertBadges dark />
+      </div>
+
+      <div class="hero-slider relative min-h-[380px] lg:min-h-0">
+        {heroSlides.map((slide, i) => (
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            class="hero-slide absolute inset-0 w-full h-full object-cover object-[60%_35%]"
+            style={`animation-delay: ${i * -9}s;`}
+            loading={i === 0 ? undefined : 'lazy'}
+            fetchpriority={i === 0 ? 'high' : undefined}
+          />
+        ))}
+        <div class="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/20 to-transparent lg:from-ink-950/90 lg:via-ink-950/10"></div>
+        <div class="absolute left-6 bottom-6 right-6 md:left-8 md:bottom-8 md:right-8 lg:left-8 lg:right-auto">
+          {heroSlides.map((slide, i) => (
+            <div class="hero-caption card-dark p-4 backdrop-blur-md bg-ink-950/70 inline-block" style={`animation-delay: ${i * -9}s;`}>
+              <div class="meta text-signal-300 mb-1">On the shopfloor</div>
+              <div class="text-white text-[14.5px] font-mono">{slide.title}</div>
+              <div class="meta text-ink-400 mt-0.5">{slide.spec}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Slow crossfade hero carousel . 5 slides, 45s cycle, ~2s crossfade, ~7s hold */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-slide, .hero-caption {
+        opacity: 0;
+        animation: hero-fade 45s ease-in-out infinite;
+      }
+      .hero-caption {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: max-content;
+        max-width: min(85vw, 280px);
+      }
+      @keyframes hero-fade {
+        0%   { opacity: 0; }
+        6%   { opacity: 1; }
+        25%  { opacity: 1; }
+        31%  { opacity: 0; }
+        100% { opacity: 0; }
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide:not(:first-child), .hero-caption:not(:first-child) { opacity: 0; }
+      .hero-slide:first-child, .hero-caption:first-child { opacity: 1; }
+    }
+  </style>
+
+  <!-- ROLLING PANEL STRIP · corporate marquee, all 13 families -->
+  <section class="border-b border-border-subtle bg-surface-elevated py-6 marquee-wrap">
+    <div class="marquee">
+      {[...panels, ...panels].map((p, i) => (
+        <a
+          href={`/panels/${p.slug}/`}
+          class="group flex items-center gap-3 shrink-0 no-underline"
+          tabindex={i < panels.length ? 0 : -1}
+          aria-hidden={i >= panels.length ? 'true' : undefined}
+        >
+          <span class="w-14 h-14 rounded-md overflow-hidden bg-ink-100 shrink-0">
+            <img src={p.image || `https://picsum.photos/seed/am-${p.slug}/200/200`} alt="" class="w-full h-full object-cover" loading="lazy" />
+          </span>
+          <span class="text-[14px] font-medium text-ink-800 group-hover:text-signal-600 transition-colors duration-200 whitespace-nowrap">{p.name}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- NUMBERS · corporate spec strip -->
+  <section class="border-y border-border-subtle bg-surface-muted/60">
+    <div class="container-x py-14 md:py-20 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8">
+      {numbers.map((n, i) => (
+        <div class="fade-up" style={`transition-delay: ${i*80}ms;`}>
+          <div class="flex items-baseline gap-1.5 mb-1">
+            <span class="text-[2rem] md:text-[2.5rem] font-medium tracking-tight text-ink-950 leading-none">{n.k}</span>
+            {n.s && <span class="text-[13px] font-mono text-signal-600">{n.s}</span>}
+          </div>
+          <div class="meta text-ink-500">{n.v}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PRIORITY PANELS -->
+  <section class="container-x pt-28 md:pt-40 pb-24 md:pb-32">
+    <div class="grid gap-6 md:gap-10 lg:grid-cols-12 items-end mb-12">
+      <div class="lg:col-span-8">
+        <div class="meta text-ink-500 mb-4">Our range</div>
+        <h2 class="tracking-[-0.03em] max-w-[18ch]">Five families we build most.</h2>
+      </div>
+      <div class="lg:col-span-4 lg:text-right">
+        <a href="/panels/" class="btn btn-ghost">
+          See all 13 panel families
+          <span class="btn-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-12 md:auto-rows-fr">
+      <div class="md:col-span-6 md:row-span-2">
+        <PanelCard slug={priorityPanels[0].slug} name={priorityPanels[0].name} tagline={priorityPanels[0].tagline} image={priorityPanels[0].image} variant="wide" index={1} />
+      </div>
+      <div class="md:col-span-3"><PanelCard slug={priorityPanels[1].slug} name={priorityPanels[1].name} tagline={priorityPanels[1].tagline} image={priorityPanels[1].image} index={2} /></div>
+      <div class="md:col-span-3"><PanelCard slug={priorityPanels[2].slug} name={priorityPanels[2].name} tagline={priorityPanels[2].tagline} image={priorityPanels[2].image} index={3} /></div>
+      <div class="md:col-span-3"><PanelCard slug={priorityPanels[3].slug} name={priorityPanels[3].name} tagline={priorityPanels[3].tagline} image={priorityPanels[3].image} index={4} /></div>
+      <div class="md:col-span-3"><PanelCard slug={priorityPanels[4].slug} name={priorityPanels[4].name} tagline={priorityPanels[4].tagline} image={priorityPanels[4].image} index={5} /></div>
+    </div>
+  </section>
+
+  <!-- CLIENTS · thin logo strip -->
+  <section class="border-y border-border-subtle bg-surface-muted/40 py-6">
+    <div class="container-x flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+      <span class="meta text-ink-400 shrink-0">Panels running on site for</span>
+      {[
+        { src: '/images/clients/landt.png', name: 'L&T Construction', dark: true },
+        { src: '/images/clients/patton.png', name: 'Patton' },
+        { src: '/images/clients/qualicom.png', name: 'Qualicom Solutions' },
+        { src: '/images/clients/scs-econ.png', name: 'Steam & Control Systems' },
+        { src: '/images/clients/ovaron.png', name: 'Ovaron Infrastructure & MEP' },
+        { src: '/images/clients/herringbone.png', name: 'Herringbone Technical Services' },
+        { src: '/images/clients/ipsen.svg', name: 'Ipsen' },
+        { src: '/images/clients/wesman.webp', name: 'Wesman' },
+      ].map(c => (
+        <span class:list={['inline-flex items-center h-7 px-2 rounded', c.dark && 'bg-ink-950']}>
+          <img src={c.src} alt={c.name} class="max-h-5 max-w-[88px] object-contain" loading="lazy" />
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <!-- INDUSTRIES SERVED -->
+  <section class="border-y border-border-subtle bg-surface-muted/60">
+    <div class="container-x py-16 md:py-20 grid gap-10 lg:grid-cols-12 items-start">
+      <div class="lg:col-span-4 fade-up">
+        <div class="meta text-ink-500 mb-4">Best suited for</div>
+        <h2 class="tracking-[-0.03em] max-w-[16ch]">Industries we ship to.</h2>
+        <p class="mt-4 text-[15px] text-ink-600 leading-relaxed max-w-[40ch]">
+          Panels installed across manufacturing plants, treatment facilities, hospitals, data centres and commercial buildings from West Bengal to the Northeast.
+        </p>
+      </div>
+      <div class="lg:col-span-8 fade-up" style="transition-delay: 100ms;">
+        <IndustryChips industries={allIndustries} />
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES · dark editorial section -->
+  <section class="bg-ink-950 text-ink-200 relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
+    <div class="container-x py-28 md:py-40 relative">
+      <div class="grid gap-12 lg:grid-cols-12 items-start mb-16">
+        <div class="lg:col-span-5 fade-up">
+          <div class="meta text-signal-300 mb-4">What we do differently</div>
+          <h2 class="text-white tracking-[-0.03em] max-w-[16ch]">Real specs, real hardware.</h2>
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7 fade-up" style="transition-delay: 100ms;">
+          <p class="text-ink-300 text-[1.0625rem] leading-relaxed">
+            The competition ships stock language and template datasheets. We ship BOQs, single-line diagrams and FAT reports before you sign the PO.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {capabilities.map((c, i) => (
+          <div class="spotlight card-dark p-6 fade-up h-full" style={`transition-delay: ${i*80}ms;`}>
+            <div class="w-9 h-9 rounded-md bg-signal-500/15 border border-signal-500/25 flex items-center justify-center mb-5">
+              {c.icon === 'shield' && <svg viewBox="0 0 20 20" fill="none" class="w-4 h-4 text-signal-300"><path d="M10 2l7 3v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V5l7-3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>}
+              {c.icon === 'network' && <svg viewBox="0 0 20 20" fill="none" class="w-4 h-4 text-signal-300"><circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg>}
+              {c.icon === 'chip' && <svg viewBox="0 0 20 20" fill="none" class="w-4 h-4 text-signal-300"><rect x="5" y="5" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 2v3M12 2v3M8 15v3M12 15v3M2 8h3M2 12h3M15 8h3M15 12h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>}
+              {c.icon === 'signature' && <svg viewBox="0 0 20 20" fill="none" class="w-4 h-4 text-signal-300"><path d="M3 14c3-5 5-7 7-3s5-3 7 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+            </div>
+            <h3 class="text-white text-[1.0625rem] font-medium mb-2 tracking-tight">{c.title}</h3>
+            <p class="text-ink-400 text-[13.5px] leading-relaxed">{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHOP · real shopfloor collage, no staged portrait -->
+  <section class="container-x py-28 md:py-40">
+    <div class="grid gap-12 lg:grid-cols-12 items-center">
+      <div class="lg:col-span-5 fade-up">
+        <div class="grid grid-cols-2 grid-rows-2 gap-3 h-[420px] md:h-[480px]">
+          <div class="card overflow-hidden row-span-2 relative">
+            <img src="/images/factory/busbar-wiring.jpg" alt="Colour-coded busbar wiring on an open panel at the AM Electricals workshop" loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+          </div>
+          <div class="card overflow-hidden relative">
+            <img src="/images/factory/amf-panel-build.jpg" alt="Engineer wiring an AMF control panel at the AM Electricals workshop" loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+          </div>
+          <div class="card overflow-hidden relative">
+            <img src="/images/factory/panel-testing.jpg" alt="Panel under test before dispatch at the AM Electricals shopfloor" loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 lg:col-start-7 fade-up" style="transition-delay: 100ms;">
+        <div class="meta text-ink-500 mb-4">Thirty-four years</div>
+        <h2 class="tracking-[-0.03em] mb-6 max-w-[18ch]">One workshop. Three decades of returning customers.</h2>
+        <p class="text-[1.0625rem] text-ink-600 leading-relaxed max-w-[52ch] mb-4">
+          AM Electricals was founded in Kolkata in 1991 to build control panels for Bengal's growing industrial base. Three decades later we still make what we sell, from the same 5,000 sqft factory on Kamardanga Road.
+        </p>
+        <p class="text-[1.0625rem] text-ink-600 leading-relaxed max-w-[52ch] mb-8">
+          10 to 20 engineers, draughtsmen, panel wiremen and test technicians. CPRI 6000A type-tested designs. ISO 9001 quality process. Founder-approved before every build leaves the door.
+        </p>
+        <a href="/about/" class="btn btn-primary">
+          The full story
+          <span class="btn-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA · dark with inline form -->
+  <section class="bg-ink-950 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
+    <div class="container-x py-28 md:py-40 relative grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-6 fade-up">
+        <div class="meta text-signal-300 mb-4">Talk to the founder</div>
+        <h2 class="text-white tracking-[-0.03em] mb-6 max-w-[16ch]">Have a spec? Let's price it.</h2>
+        <p class="text-ink-300 text-[1.0625rem] leading-relaxed max-w-[42ch] mb-8">
+          Send SLD, load list or a photo of the existing panel over WhatsApp. We reply within one business day.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href={site.social.whatsapp} target="_blank" rel="noopener" class="btn btn-accent">
+            WhatsApp us
+            <span class="btn-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href={`tel:${site.phone}`} class="btn btn-ghost-on-dark">
+            {site.phone}
+          </a>
+        </div>
+      </div>
+      <div class="lg:col-span-6 lg:pl-4 fade-up" style="transition-delay: 100ms;">
+        <LeadForm subject="Home CTA quote request" dark />
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

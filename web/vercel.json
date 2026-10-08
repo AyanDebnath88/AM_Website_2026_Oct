@@ -1,0 +1,38 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "buildCommand": "astro build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/(.*)\\.(jpg|jpeg|png|webp|avif|svg|ico|woff2)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/apfc", "destination": "/panels/apfc-panel-manufacturer-kolkata/", "permanent": true },
+    { "source": "/mcc", "destination": "/panels/mcc-panel-manufacturer/", "permanent": true },
+    { "source": "/pcc", "destination": "/panels/pcc-panel-manufacturer/", "permanent": true },
+    { "source": "/amf-dg-sync", "destination": "/panels/amf-dg-sync-panels/", "permanent": true },
+    { "source": "/plc-automation", "destination": "/panels/plc-automation-panels/", "permanent": true },
+    { "source": "/hvac", "destination": "/panels/hvac-control-panels/", "permanent": true },
+    { "source": "/ahu-metering", "destination": "/panels/ahu-metering-panels/", "permanent": true },
+    { "source": "/control-desk", "destination": "/panels/industrial-control-desks/", "permanent": true },
+    { "source": "/dg-control", "destination": "/panels/dg-control-panels/", "permanent": true },
+    { "source": "/fire-alarm-panels", "destination": "/panels/fire-alarm-control-panels/", "permanent": true },
+    { "source": "/power-distribution", "destination": "/panels/power-distribution-panels/", "permanent": true },
+    { "source": "/stp-etp-wtp", "destination": "/panels/stp-etp-wtp-panels/", "permanent": true },
+    { "source": "/other-panels", "destination": "/panels/custom-control-panels/", "permanent": true }
+  ]
+}

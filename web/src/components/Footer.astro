@@ -1,0 +1,78 @@
+---
+import { site } from '../data/site';
+import panelsData from '../data/panels.json';
+
+const panels = panelsData as Array<{ slug: string; name: string }>;
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 bg-ink-950 text-ink-300 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
+  <div class="container-x py-20 relative">
+    <div class="grid gap-14 lg:grid-cols-12">
+
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-3 mb-5">
+          <img src="/logo.png" alt="" class="w-10 h-10 rounded-md" width="40" height="40" />
+          <div class="flex flex-col leading-tight">
+            <span class="text-white font-medium text-base">AM Electricals</span>
+            <span class="meta text-ink-400">Kolkata · India</span>
+          </div>
+        </div>
+        <p class="text-[14.5px] text-ink-400 leading-relaxed max-w-md mb-6">
+          Founder-led control panel manufacturer since 1991. IEC 61439 and CPRI 6000A type-tested. Pan-India delivery from a 5,000 sqft Kolkata factory.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          {site.certifications.map(c => (
+            <span class="meta inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.03] text-signal-300">
+              <span class="w-1 h-1 rounded-full bg-signal-500"></span>
+              {c.name}
+            </span>
+          ))}
+          <span class="meta inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.03] text-signal-300">
+            <span class="w-1 h-1 rounded-full bg-signal-500"></span>
+            Est. 1991
+          </span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3">
+        <p class="meta text-ink-400 mb-4">Panels</p>
+        <ul class="space-y-2.5 text-[14px]">
+          {panels.slice(0, 7).map(p => (
+            <li><a href={`/panels/${p.slug}/`} class="text-ink-300 hover:text-white no-underline transition-colors duration-300">{p.name}</a></li>
+          ))}
+          <li><a href="/panels/" class="text-signal-300 no-underline">All 13 panels →</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="meta text-ink-400 mb-4">Company</p>
+        <ul class="space-y-2.5 text-[14px]">
+          <li><a href="/about/" class="text-ink-300 hover:text-white no-underline transition-colors duration-300">About</a></li>
+          <li><a href="/case-studies/" class="text-ink-300 hover:text-white no-underline transition-colors duration-300">Case Studies</a></li>
+          <li><a href="/careers/" class="text-ink-300 hover:text-white no-underline transition-colors duration-300">Careers</a></li>
+          <li><a href="/contact/" class="text-ink-300 hover:text-white no-underline transition-colors duration-300">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="meta text-ink-400 mb-4">Reach</p>
+        <address class="text-[14px] text-ink-300 not-italic space-y-2.5">
+          <div class="font-mono text-[12px] text-ink-400">{site.address.city} {site.address.postcode}</div>
+          <a href={`tel:${site.phone}`} class="block text-ink-300 hover:text-white no-underline font-mono">{site.phone}</a>
+          <a href={`mailto:${site.email}`} class="block text-ink-300 hover:text-white no-underline break-all">{site.email}</a>
+          <a href={site.social.whatsapp} class="block text-signal-300 no-underline" target="_blank" rel="noopener">WhatsApp →</a>
+        </address>
+      </div>
+    </div>
+
+    <div class="border-t border-white/[0.06] mt-14 pt-6 flex flex-col sm:flex-row justify-between gap-4 items-start sm:items-center">
+      <div class="meta text-ink-500">© {year} {site.name}. All rights reserved.</div>
+      <div class="flex gap-5 meta text-ink-500">
+        <a href="/legal/privacy/" class="hover:text-white no-underline">Privacy</a>
+        <a href="/legal/terms/" class="hover:text-white no-underline">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>

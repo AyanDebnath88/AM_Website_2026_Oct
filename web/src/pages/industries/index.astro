@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import panelsData from '../../data/panels.json';
+
+const panels = panelsData as Array<{ slug: string; shortName: string; name: string }>;
+const panelBySlug = Object.fromEntries(panels.map(p => [p.slug, p]));
+
+const industries = [
+  {
+    name: 'Cement, Steel & Material Handling',
+    image: '/images/panels/mcc-4.jpg',
+    body: 'Conveyor, crusher and ash-handling duty: high motor counts, dusty sites, heavy restart current. We build MCC and PCC panels with Form 4b segregation so one feeder fault does not drop the line.',
+    panels: ['mcc-panel-manufacturer', 'pcc-panel-manufacturer', 'industrial-control-desks', 'custom-control-panels'],
+  },
+  {
+    name: 'Water, Effluent & Sewage Treatment',
+    image: '/images/panels/stp-etp-wtp-6.jpg',
+    body: 'STP, ETP and WTP panels for municipal and industrial plants: pump and dosing motor control, filter and aerator sequencing, IP54 enclosures for a wet plant room.',
+    panels: ['stp-etp-wtp-panels', 'plc-automation-panels', 'mcc-panel-manufacturer'],
+  },
+  {
+    name: 'Chemical, Petrochemical & Pharma',
+    image: '/images/panels/fire-alarm-4.jpg',
+    body: 'Batch process control and fire/gas safety panels for chemical and pharma sites, built to the segregation and labelling a safety audit actually checks for.',
+    panels: ['fire-alarm-control-panels', 'plc-automation-panels', 'mcc-panel-manufacturer'],
+  },
+  {
+    name: 'Food & Beverage Processing',
+    image: '/images/panels/plc-3.jpg',
+    body: 'PLC-driven batching, washdown-duty enclosures and power factor correction for plants running compressors and refrigeration most of the day.',
+    panels: ['plc-automation-panels', 'apfc-panel-manufacturer-kolkata', 'stp-etp-wtp-panels'],
+  },
+  {
+    name: 'Commercial Real Estate & Hospitality',
+    image: '/images/panels/hero-main-distribution.jpg',
+    body: 'Malls, hotels and hospitals: HVAC and AHU control, metering panels per tenant or floor, and DG/AMF changeover that switches over before anyone in the lobby notices.',
+    panels: ['hvac-control-panels', 'ahu-metering-panels', 'power-distribution-panels', 'amf-dg-sync-panels'],
+  },
+  {
+    name: 'Data Centres & Telecom',
+    image: '/images/panels/amf-1.jpg',
+    body: 'Uptime depends on the changeover panel, not just the generator. AMF/DG sync panels with no manual reset step, plus APFC to keep the incoming supply penalty-free.',
+    panels: ['amf-dg-sync-panels', 'apfc-panel-manufacturer-kolkata', 'power-distribution-panels'],
+  },
+  {
+    name: 'Utilities, Residential & Small Industry',
+    image: '/images/panels/dg-control.jpg',
+    body: 'Single-DG control panels and distribution boards sized for a housing complex, a small factory or a utility substation, not over-specified for either.',
+    panels: ['dg-control-panels', 'power-distribution-panels'],
+  },
+  {
+    name: 'Custom Process Plants',
+    image: '/images/panels/custom-5.jpg',
+    body: 'Jute and textile mills, boiler houses, furnace and burner lines, oil refineries: non-catalogue panels built off your SLD, not ours.',
+    panels: ['custom-control-panels', 'industrial-control-desks'],
+  },
+];
+---
+<BaseLayout
+  title="Industries We Serve | Control Panel Manufacturer, Kolkata"
+  description="Control panels for cement, steel, water treatment, chemical, food processing, commercial real estate, data centres and custom process plants. Built in Kolkata since 1991."
+>
+  <section class="container-x pt-10 pb-16 md:pb-20">
+    <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Industries' }]} />
+    <div class="max-w-2xl pt-2">
+      <div class="meta text-ink-500 mb-5">Where our panels run</div>
+      <h1 class="mb-6 max-w-[16ch]">Industries we build for.</h1>
+      <p class="text-[1.0625rem] text-ink-600 leading-relaxed">
+        Thirty-four years of panels built to spec for specific sites, not a catalogue. Eight sectors below cover most of what we build; if yours isn't listed, it's probably still a custom panel we can quote.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-x pb-28 md:pb-40">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {industries.map((ind, i) => (
+        <div class="card overflow-hidden fade-up" style={`transition-delay: ${(i % 3) * 70}ms;`}>
+          <div class="aspect-[16/10] bg-ink-100 relative">
+            <img src={ind.image} alt={`${ind.name} control panel application`} loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+          </div>
+          <div class="p-6">
+            <h2 class="text-[1.0625rem] font-medium tracking-tight text-ink-900 mb-2">{ind.name}</h2>
+            <p class="text-[14.5px] text-ink-600 leading-relaxed mb-4">{ind.body}</p>
+            <div class="flex flex-wrap gap-2">
+              {ind.panels.map(slug => panelBySlug[slug] && (
+                <a href={`/panels/${slug}/`} class="meta px-2.5 py-1 rounded-md border border-border-subtle bg-surface-muted text-ink-700 no-underline hover:text-signal-600 hover:border-signal-300 transition-colors duration-200">
+                  {panelBySlug[slug].shortName}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-ink-950 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40 pointer-events-none"></div>
+    <div class="container-x py-20 md:py-24 relative text-center">
+      <h2 class="tracking-[-0.03em] mb-5 max-w-[22ch] mx-auto">Don't see your site type?</h2>
+      <p class="text-ink-300 max-w-[52ch] mx-auto mb-8">
+        Most of what we build is engineered against a customer's own SLD, not pulled off a shelf. Send us the drawing or the load list.
+      </p>
+      <a href="/quote/" class="btn btn-accent">
+        Get a free quote
+        <span class="btn-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
