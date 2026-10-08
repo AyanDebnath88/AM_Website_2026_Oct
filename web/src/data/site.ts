@@ -6,8 +6,7 @@ export const site = {
   founder: 'Ajit Debnath',
   phone: '+91-7003707013',
   phoneRaw: '917003707013',
-  email: 'sales@amelectricals.co.in',
-  emailLegacy: 'amelectricals@yahoo.co.in',
+  email: 'amelectricals@yahoo.co.in',
   address: {
     street: '7S Kamardanga Road, Near Anandapalit',
     city: 'Kolkata',
