@@ -72,9 +72,9 @@
     "slug": "mcc-panel-manufacturer",
     "name": "MCC Panels",
     "shortName": "MCC",
-    "tagline": "Motor Control Centre, IS 8623, 65 kA / 1s withstand",
+    "tagline": "Motor Control Centre, IS 8623, 70 kA / 1s withstand",
     "seoTitle": "MCC Panel Manufacturer India | IS 8623, Form 4b",
-    "seoDescription": "Motor Control Centre panels to IS 8623, 65 kA / 1s. Single or double front, IP54/IP55, Form 2b to 4b. BMS ready. Made in Kolkata.",
+    "seoDescription": "Motor Control Centre panels to IS 8623, 70 kA / 1s. Single or double front, IP54/IP55, Form 2b to 4b. BMS ready. Made in Kolkata.",
     "keywordPrimary": "MCC PCC panel India",
     "priority": 1,
     "image": "/images/panels/mcc-4.jpg",
@@ -85,7 +85,7 @@
       },
       {
         "label": "Short-circuit withstand",
-        "value": "65 kA for 1 second"
+        "value": "70 kA for 1 second"
       },
       {
         "label": "Protection",
@@ -139,7 +139,7 @@
     "shortName": "PCC",
     "tagline": "Power Control Centre, up to 4000 A, IS 8623",
     "seoTitle": "PCC Panel Manufacturer India | 4000A, IEC 61439",
-    "seoDescription": "Power Control Centre panels up to 4000 A at 415 V, 3-phase 4-wire. IS 8623, 65 kA / 1s. Single or double front, load scheduling built in.",
+    "seoDescription": "Power Control Centre panels up to 4000 A at 415 V, 3-phase 4-wire. IS 8623, 70 kA / 1s. Single or double front, load scheduling built in.",
     "keywordPrimary": "PCC panel manufacturer",
     "priority": 1,
     "image": "/images/panels/pcc.jpg",
@@ -158,7 +158,7 @@
       },
       {
         "label": "Short-circuit withstand",
-        "value": "65 kA for 1 second"
+        "value": "70 kA for 1 second"
       },
       {
         "label": "Protection",
