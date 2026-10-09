@@ -1,20 +1,22 @@
 ---
+import { industryLinks } from '../data/industryLinks';
+
 interface Props {
   industries: string[];
   dark?: boolean;
 }
 const { industries, dark = false } = Astro.props;
 const chip = dark
-  ? 'inline-flex items-center gap-2 px-3 py-2 rounded-md border border-white/10 bg-white/[0.03] text-[13px] text-ink-200 font-medium'
-  : 'inline-flex items-center gap-2 px-3 py-2 rounded-md border border-border-subtle bg-surface-muted text-[13px] text-ink-800 font-medium';
+  ? 'inline-flex items-center gap-2 px-3 py-2 rounded-md border border-white/10 bg-white/[0.03] text-[13px] text-ink-200 font-medium no-underline hover:border-white/25 transition-colors duration-200'
+  : 'inline-flex items-center gap-2 px-3 py-2 rounded-md border border-border-subtle bg-surface-muted text-[13px] text-ink-800 font-medium no-underline hover:border-signal-300 hover:text-signal-600 transition-colors duration-200';
 ---
 {industries && industries.length > 0 && (
   <div class="flex flex-wrap gap-2">
     {industries.map(i => (
-      <span class={chip}>
+      <a href={`/industries/#${industryLinks[i] || ''}`} class={chip}>
         <span class="w-1 h-1 rounded-full bg-signal-500"></span>
         {i}
-      </span>
+      </a>
     ))}
   </div>
 )}

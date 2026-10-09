@@ -8,48 +8,56 @@ const panelBySlug = Object.fromEntries(panels.map(p => [p.slug, p]));
 
 const industries = [
   {
+    id: 'cement-steel-material-handling',
     name: 'Cement, Steel & Material Handling',
     image: '/images/panels/mcc-4.jpg',
     body: 'Conveyor, crusher and ash-handling duty: high motor counts, dusty sites, heavy restart current. We build MCC and PCC panels with Form 4b segregation so one feeder fault does not drop the line.',
     panels: ['mcc-panel-manufacturer', 'pcc-panel-manufacturer', 'industrial-control-desks', 'custom-control-panels'],
   },
   {
+    id: 'water-effluent-sewage-treatment',
     name: 'Water, Effluent & Sewage Treatment',
     image: '/images/panels/stp-etp-wtp-6.jpg',
     body: 'STP, ETP and WTP panels for municipal and industrial plants: pump and dosing motor control, filter and aerator sequencing, IP54 enclosures for a wet plant room.',
     panels: ['stp-etp-wtp-panels', 'plc-automation-panels', 'mcc-panel-manufacturer'],
   },
   {
+    id: 'chemical-petrochemical-pharma',
     name: 'Chemical, Petrochemical & Pharma',
     image: '/images/panels/fire-alarm-4.jpg',
     body: 'Batch process control and fire/gas safety panels for chemical and pharma sites, built to the segregation and labelling a safety audit actually checks for.',
     panels: ['fire-alarm-control-panels', 'plc-automation-panels', 'mcc-panel-manufacturer'],
   },
   {
+    id: 'food-beverage-processing',
     name: 'Food & Beverage Processing',
     image: '/images/panels/plc-3.jpg',
     body: 'PLC-driven batching, washdown-duty enclosures and power factor correction for plants running compressors and refrigeration most of the day.',
     panels: ['plc-automation-panels', 'apfc-panel-manufacturer-kolkata', 'stp-etp-wtp-panels'],
   },
   {
+    id: 'commercial-real-estate-hospitality',
     name: 'Commercial Real Estate & Hospitality',
     image: '/images/panels/hero-main-distribution.jpg',
     body: 'Malls, hotels and hospitals: HVAC and AHU control, metering panels per tenant or floor, and DG/AMF changeover that switches over before anyone in the lobby notices.',
     panels: ['hvac-control-panels', 'ahu-metering-panels', 'power-distribution-panels', 'amf-dg-sync-panels'],
   },
   {
+    id: 'data-centres-telecom',
     name: 'Data Centres & Telecom',
     image: '/images/panels/amf-1.jpg',
     body: 'Uptime depends on the changeover panel, not just the generator. AMF/DG sync panels with no manual reset step, plus APFC to keep the incoming supply penalty-free.',
     panels: ['amf-dg-sync-panels', 'apfc-panel-manufacturer-kolkata', 'power-distribution-panels'],
   },
   {
+    id: 'utilities-residential-small-industry',
     name: 'Utilities, Residential & Small Industry',
     image: '/images/panels/dg-control.jpg',
     body: 'Single-DG control panels and distribution boards sized for a housing complex, a small factory or a utility substation, not over-specified for either.',
     panels: ['dg-control-panels', 'power-distribution-panels'],
   },
   {
+    id: 'custom-process-plants',
     name: 'Custom Process Plants',
     image: '/images/panels/custom-5.jpg',
     body: 'Jute and textile mills, boiler houses, furnace and burner lines, oil refineries: non-catalogue panels built off your SLD, not ours.',
@@ -75,7 +83,7 @@ const industries = [
   <section class="container-x pb-28 md:pb-40">
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {industries.map((ind, i) => (
-        <div class="card overflow-hidden fade-up" style={`transition-delay: ${(i % 3) * 70}ms;`}>
+        <div id={ind.id} class="card overflow-hidden fade-up scroll-mt-24" style={`transition-delay: ${(i % 3) * 70}ms;`}>
           <div class="aspect-[16/10] bg-ink-100 relative">
             <img src={ind.image} alt={`${ind.name} control panel application`} loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
           </div>
