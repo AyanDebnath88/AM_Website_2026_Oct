@@ -12,9 +12,28 @@ design rationale.
       tiering built in — `C:\Claude Projects\Scraper Leads\leads_pipeline.py`
 - [x] Sending mailbox: `outreach@amelectricals.co.in` via Brevo SMTP relay
       through Gmail "Send mail as", domain authenticated (SPF/DKIM/DMARC)
-- [ ] Google Sheets CRM connected (Composio) — one-time OAuth click needed
-- [ ] Sheet CRM created and scraper output pushed to it
-- [ ] Company brochure PDF built
+- [x] Google Sheets CRM connected (Composio)
+- [x] Sheet CRM created: [AM Electricals Sales CRM](https://docs.google.com/spreadsheets/d/1TCzHQtdsrpgU1nRIn-XF-feolvmbzjotSqLWZ3i8uSM/edit)
+      — tabs: `Leads` (qualified, funnel-tracked), `Needs Review`, `Dashboard`
+- [x] Company brochure PDF built
+
+## Daily workflow (quick reference)
+
+Run once a day, ~5 min your side:
+
+1. `cd "C:\Claude Projects\Scraper Leads" && python leads_pipeline.py`
+   (auto-stops at Groq's daily token cap — normal, resumes next day)
+2. Open [Dashboard tab](https://docs.google.com/spreadsheets/d/1TCzHQtdsrpgU1nRIn-XF-feolvmbzjotSqLWZ3i8uSM/edit#gid=2145750913)
+   — check pipeline counts, "Rows waiting" in Needs Review
+3. If Needs Review has rows: skim, fix/move real leads, ignore the rest
+4. Tell me to push new qualified rows from `leads_master.xlsx` → CRM `Leads` tab
+5. Tell me to draft outreach for any `Qualified` row with no draft yet
+6. Review drafts in Sheet → mark `Approved` for ones you want sent
+7. Tell me to send `Approved` rows — I mail-merge and flip `Stage` → `Sent`
+8. Update `Stage` on any reply (`Replied`/`Meeting Booked`/`Won`/`Lost`)
+
+Steps 4/5/7 are me, not scripted — say "run the funnel" and I do all three
+in order, stopping at the approval gate (step 6) for you.
 
 ## Step-by-step run
 
