@@ -78,14 +78,14 @@ const labelClass = dark
     </span>
   </button>
   <p class={dark ? 'meta text-ink-500 text-center' : 'meta text-ink-500 text-center'}>
-    Opens WhatsApp with your details pre-filled
+    Opens your email client with your details pre-filled
   </p>
 
   <div data-lead-status class="hidden text-[13px] font-medium"></div>
 </form>
 
 <script>
-  import { googleForm } from '../data/site';
+  import { googleForm, site } from '../data/site';
 
   document.querySelectorAll<HTMLFormElement>('[data-lead-form]').forEach(form => {
     form.addEventListener('submit', async (e) => {
@@ -125,18 +125,17 @@ const labelClass = dark
         });
 
         status.className = 'text-[13px] font-medium text-emerald-600';
-        status.textContent = 'Sent. Opening WhatsApp with your details.';
+        status.textContent = 'Sent. Opening your email client.';
 
-        const waText = [
+        const mailBody = [
           `Hello AM Electricals,`, ``, `Enquiry from website:`,
           `Name: ${name}`, `Email: ${email}`, `Mobile: ${mobile}`,
           panel ? `Panel: ${panel}` : '',
           message ? `Details: ${message}` : '',
-          ``, `(Subject: ${subject})`,
         ].filter(Boolean).join('\n');
 
         setTimeout(() => {
-          window.open(`https://wa.me/${phone}?text=${encodeURIComponent(waText)}`, '_blank', 'noopener');
+          window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
         }, 400);
 
         form.reset();
