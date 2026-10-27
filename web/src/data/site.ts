@@ -4,8 +4,8 @@ export const site = {
   established: 1991,
   yearsInBusiness: new Date().getFullYear() - 1991,
   founder: 'Ajit Debnath',
-  phone: '+91-7003707013',
-  phoneRaw: '917003707013',
+  phone: '+91-7980954823',
+  phoneRaw: '917980954823',
   email: 'amelectricals@yahoo.co.in',
   address: {
     street: '7S Kamardanga Road, Near Anandapalit',
