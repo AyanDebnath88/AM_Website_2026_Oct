@@ -63,6 +63,21 @@ const numbers = [
   { k: '70', s: 'kA / 1s', v: 'MCC / PCC withstand' },
 ];
 
+const heroCopy = [
+  {
+    headline: '13 panel families, built to your spec.',
+    sub: 'APFC, MCC, PCC, PLC automation and DG-sync panels engineered in our 5,000 sqft Kolkata factory. IS 8623 . IEC 61439-2 . CPRI 6000A type-tested. Founder-led for 34 years.',
+  },
+  {
+    headline: 'Panels for 8 industries, one Kolkata factory.',
+    sub: 'Cement and steel, water treatment, pharma, food and beverage, hospitality, data centres, utilities, process plants — all engineered in-house. IS 8623 . CPRI 70 kA short-circuit tested. Founder-led for 34 years.',
+  },
+  {
+    headline: 'CPRI-tested. IS 8623 compliant. 34 years running.',
+    sub: 'Every panel built end-to-end in our own 5,000 sqft Kolkata shopfloor — not outsourced, not assembled from bought-in parts. 13 panel families, zero subcontracting.',
+  },
+];
+
 const heroSlides = [
   { image: '/images/panels/hero-lt-distribution.jpg', alt: 'AM Electricals LT distribution panel lineup, 4-section, on the Kolkata shopfloor', title: 'LT Distribution . 4-section lineup', spec: 'Form 4b . IP 55 . draw-out' },
   { image: '/images/panels/hero-main-distribution.jpg', alt: 'AM Electricals main power distribution panel on the Kolkata shopfloor', title: 'Power Distribution . Main panel', spec: 'Multi-way, MCB + isolator feeders' },
@@ -89,13 +104,18 @@ const heroSlides = [
           <span class="meta text-ink-400">Kolkata . Since 1991</span>
         </div>
 
-        <h1 class="mb-6 max-w-[15ch] text-white">
-          13 panel families, built to your spec.
-        </h1>
-
-        <p class="text-[1.0625rem] md:text-[1.1875rem] text-ink-300 leading-[1.55] max-w-[46ch] mb-8 font-normal">
-          APFC, MCC, PCC, PLC automation and DG-sync panels engineered in our 5,000 sqft Kolkata factory. IS 8623 . IEC 61439-2 . CPRI 6000A type-tested. Founder-led for 34 years.
-        </p>
+        <div class="hero-copy-stack relative mb-8" style="min-height: 230px;">
+          {heroCopy.map((copy, i) => (
+            <div class="hero-copy-slide absolute inset-0" style={`animation-delay: ${i * -9}s;`}>
+              <h1 class="mb-6 max-w-[15ch] text-white">
+                {copy.headline}
+              </h1>
+              <p class="text-[1.0625rem] md:text-[1.1875rem] text-ink-300 leading-[1.55] max-w-[46ch] font-normal">
+                {copy.sub}
+              </p>
+            </div>
+          ))}
+        </div>
 
         <div class="flex flex-wrap items-center gap-3 mb-8">
           <a href="/quote/" class="btn btn-accent">
@@ -149,6 +169,11 @@ const heroSlides = [
         width: max-content;
         max-width: min(85vw, 280px);
       }
+      /* Headline/subhead rotation . 3 copies, same 9s-per-item pacing as the image slider */
+      .hero-copy-slide {
+        opacity: 0;
+        animation: hero-fade 27s ease-in-out infinite;
+      }
       @keyframes hero-fade {
         0%   { opacity: 0; }
         6%   { opacity: 1; }
@@ -160,6 +185,8 @@ const heroSlides = [
     @media (prefers-reduced-motion: reduce) {
       .hero-slide:not(:first-child), .hero-caption:not(:first-child) { opacity: 0; }
       .hero-slide:first-child, .hero-caption:first-child { opacity: 1; }
+      .hero-copy-slide:not(:first-child) { opacity: 0; }
+      .hero-copy-slide:first-child { opacity: 1; }
     }
   </style>
 
