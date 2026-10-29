@@ -103,6 +103,15 @@ const bingVerify      = (import.meta.env as any).PUBLIC_BING_VERIFY as string | 
         src="https://plausible.io/js/script.js"
       ></script>
     )}
+
+    {/* Google Ads conversion tracking (Search + Discovery campaign) */}
+    <script async is:inline src="https://www.googletagmanager.com/gtag/js?id=AW-18446815805"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18446815805');
+    </script>
   </head>
   <body>
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-signal-500 focus:text-white focus:px-4 focus:py-2 focus:rounded-md">
