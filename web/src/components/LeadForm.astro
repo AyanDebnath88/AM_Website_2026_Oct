@@ -127,6 +127,15 @@ const labelClass = dark
         status.className = 'text-[13px] font-medium text-emerald-600';
         status.textContent = 'Sent. Opening your email client.';
 
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-18446815805/8NyrCIWwta4dEL2kkNxE',
+            'value': 1.0,
+            'currency': 'INR',
+            'transaction_id': `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          });
+        }
+
         const mailBody = [
           `Hello AM Electricals,`, ``, `Enquiry from website:`,
           `Name: ${name}`, `Email: ${email}`, `Mobile: ${mobile}`,
