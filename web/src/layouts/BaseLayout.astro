@@ -147,6 +147,18 @@ const bingVerify      = (import.meta.env as any).PUBLIC_BING_VERIFY as string | 
       );
       document.querySelectorAll('.fade-up, .fade-in').forEach((el) => io.observe(el));
 
+      // Google Ads: fire the Purchase conversion when a visitor clicks a phone number link
+      document.addEventListener('click', (e) => {
+        const link = (e.target as HTMLElement)?.closest?.('a[href^="tel:"]');
+        if (!link || typeof window.gtag !== 'function') return;
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-18446815805/8NyrCIWwta4dEL2kkNxE',
+          'value': 1.0,
+          'currency': 'INR',
+          'transaction_id': `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        });
+      });
+
       // Cursor spotlight on dark cards
       document.querySelectorAll<HTMLElement>('.spotlight').forEach((el) => {
         el.addEventListener('pointermove', (e) => {
