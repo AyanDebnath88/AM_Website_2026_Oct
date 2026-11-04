@@ -5,8 +5,8 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import { site } from '../data/site';
 ---
 <BaseLayout
-  title="Contact AM Electricals . Kolkata Factory & Sales"
-  description="Contact AM Electricals in Kolkata. Phone, WhatsApp, email and factory address. Quotes within one business day."
+  title="Contact A.M.Electricals . Kolkata Factory & Sales"
+  description="Contact A.M.Electricals in Kolkata. Phone, WhatsApp, email and factory address. Quotes within one business day."
 >
   <section class="container-x pt-10 pb-16 md:pb-24">
     <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
@@ -47,7 +47,7 @@ import { site } from '../data/site';
             <iframe
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              title="AM Electricals Kolkata factory location"
+              title="A.M.Electricals Kolkata factory location"
               class="w-full h-full border-0"
               src={`https://www.google.com/maps?q=${encodeURIComponent(`${site.address.street}, ${site.address.city} ${site.address.postcode}`)}&output=embed`}
             ></iframe>

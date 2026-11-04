@@ -1,5 +1,5 @@
 export const site = {
-  name: 'AM Electricals',
+  name: 'A.M.Electricals',
   tagline: 'Control Panel Manufacturer since 1991',
   established: 1991,
   yearsInBusiness: new Date().getFullYear() - 1991,
@@ -24,7 +24,7 @@ export const site = {
     linkedin: '',
   },
   whatsappPrefill: (subject: string = 'Panel enquiry') =>
-    `https://wa.me/917003707013?text=${encodeURIComponent(`Hello AM Electricals, I am enquiring about: ${subject}`)}`,
+    `https://wa.me/917003707013?text=${encodeURIComponent(`Hello A.M.Electricals, I am enquiring about: ${subject}`)}`,
 } as const;
 
 export const nav = {
