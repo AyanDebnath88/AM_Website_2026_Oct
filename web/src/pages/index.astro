@@ -21,6 +21,7 @@ const panels = panelsData as Array<{
   priority: number;
 }>;
 const priorityPanels = panels.filter(p => p.priority === 1);
+const allPanelsForRotation = panels.map(p => ({ slug: p.slug, name: p.name, tagline: p.tagline, image: p.image }));
 
 const orgSchema = {
   '@context': 'https://schema.org',
@@ -239,16 +240,43 @@ const heroSlides = [
       </div>
     </div>
 
-    <div class="grid gap-5 md:grid-cols-12 md:auto-rows-fr">
-      <div class="md:col-span-6 md:row-span-2">
+    <div id="priority-panels-grid" class="grid gap-5 md:grid-cols-12 md:auto-rows-fr">
+      <div class="md:col-span-6 md:row-span-2" data-panel-slot="0">
         <PanelCard slug={priorityPanels[0].slug} name={priorityPanels[0].name} tagline={priorityPanels[0].tagline} image={priorityPanels[0].image} variant="wide" index={1} />
       </div>
-      <div class="md:col-span-3"><PanelCard slug={priorityPanels[1].slug} name={priorityPanels[1].name} tagline={priorityPanels[1].tagline} image={priorityPanels[1].image} index={2} /></div>
-      <div class="md:col-span-3"><PanelCard slug={priorityPanels[2].slug} name={priorityPanels[2].name} tagline={priorityPanels[2].tagline} image={priorityPanels[2].image} index={3} /></div>
-      <div class="md:col-span-3"><PanelCard slug={priorityPanels[3].slug} name={priorityPanels[3].name} tagline={priorityPanels[3].tagline} image={priorityPanels[3].image} index={4} /></div>
-      <div class="md:col-span-3"><PanelCard slug={priorityPanels[4].slug} name={priorityPanels[4].name} tagline={priorityPanels[4].tagline} image={priorityPanels[4].image} index={5} /></div>
+      <div class="md:col-span-3" data-panel-slot="1"><PanelCard slug={priorityPanels[1].slug} name={priorityPanels[1].name} tagline={priorityPanels[1].tagline} image={priorityPanels[1].image} index={2} /></div>
+      <div class="md:col-span-3" data-panel-slot="2"><PanelCard slug={priorityPanels[2].slug} name={priorityPanels[2].name} tagline={priorityPanels[2].tagline} image={priorityPanels[2].image} index={3} /></div>
+      <div class="md:col-span-3" data-panel-slot="3"><PanelCard slug={priorityPanels[3].slug} name={priorityPanels[3].name} tagline={priorityPanels[3].tagline} image={priorityPanels[3].image} index={4} /></div>
+      <div class="md:col-span-3" data-panel-slot="4"><PanelCard slug={priorityPanels[4].slug} name={priorityPanels[4].name} tagline={priorityPanels[4].tagline} image={priorityPanels[4].image} index={5} /></div>
     </div>
   </section>
+
+  <script type="application/json" id="all-panels-data" set:html={JSON.stringify(allPanelsForRotation)} />
+  <script>
+    // Rotate the "Five families we build most" cards: pick 5 random panels
+    // from all 13 on each page load, so repeat visitors see a different set.
+    // SSR content above is the no-JS / first-paint fallback.
+    const dataEl = document.getElementById('all-panels-data');
+    const grid = document.getElementById('priority-panels-grid');
+    if (dataEl && grid) {
+      const allPanels = JSON.parse(dataEl.textContent || '[]');
+      if (allPanels.length > 5) {
+        const shuffled = [...allPanels].sort(() => Math.random() - 0.5).slice(0, 5);
+        grid.querySelectorAll('[data-panel-slot]').forEach((slot, i) => {
+          const p = shuffled[i];
+          if (!p) return;
+          const card = slot.querySelector('a');
+          const img = slot.querySelector('img');
+          const h3 = slot.querySelector('h3');
+          const tagline = slot.querySelector('h3 + p');
+          if (card) card.setAttribute('href', `/panels/${p.slug}/`);
+          if (img) { img.setAttribute('src', p.image); img.setAttribute('alt', p.name); }
+          if (h3) h3.textContent = p.name;
+          if (tagline) tagline.textContent = p.tagline;
+        });
+      }
+    }
+  </script>
 
   <!-- CLIENTS · thin logo strip -->
   <section class="border-y border-border-subtle bg-surface-muted/40 py-6">
