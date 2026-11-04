@@ -8,7 +8,7 @@ export const site = {
   phoneRaw: '917980954823',
   email: 'amelectricals@yahoo.co.in',
   address: {
-    street: '7S Kamardanga Road, Near Anandapalit',
+    street: '7D Kamardanga Road, Near Anandapalit',
     city: 'Kolkata',
     postcode: '700046',
     state: 'West Bengal',
