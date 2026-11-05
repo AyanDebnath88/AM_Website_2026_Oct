@@ -21,24 +21,37 @@ Run the AM Electricals sales funnel end to end, per `docs/superpowers/sales-funn
    <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:24px 0;"><tr><td align="center"><table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;font-family:Arial,sans-serif;"><tr><td><img src="https://amelectricals.co.in/images/marketing/prospectus-banner.png" width="600" style="display:block;width:100%;" alt="AM Electricals - control panel manufacturer, Kolkata"></td></tr><tr><td style="padding:24px 32px 8px 32px;font-size:15px;line-height:1.6;color:#222;"><p>[greeting]</p><p>[pain-point paragraph, 1-2 sentences, personalized to the lead]</p><p>[proof/CTA bridge paragraph, 1 sentence]</p></td></tr><tr><td style="padding:8px 32px;"><img src="[IMAGE URL - see map below]" width="536" style="display:block;width:100%;border-radius:4px;" alt="[panel type], from our product range"></td></tr><tr><td style="padding:16px 32px 24px 32px;font-size:15px;line-height:1.6;color:#222;"><p>[one-line CTA]</p></td></tr><tr><td style="padding:16px 32px 32px 32px;border-top:1px solid #eee;"><p style="margin:0;font-weight:bold;">Ayan Debnath</p><p style="margin:0;color:#666;">AM Electricals | 7980954823 | <a href="https://amelectricals.co.in" style="color:#c0392b;text-decoration:none;">amelectricals.co.in</a></p></td></tr></table></td></tr></table>
    ```
 
-   **Image map — always pull from `web/src/data/panels.json`'s own
-   `image` field per category (the real on-site photo), never the raw
-   `/images/panels/*-1.jpg` etc "secondary shot" gallery, which is lower
-   quality and not what the site itself shows:**
+   **Image map — pull from `web/src/data/panels.json`'s own `image`
+   (hero) field AND `gallery` array per category. Both are real photos
+   the live site actually displays for that panel (hero thumbnail +
+   gallery carousel on the panel's own detail page) — never the
+   unrelated raw `/images/panels/*` files that aren't referenced by
+   either field for that category.**
 
-   | industry id | panels.json category | image |
+   **Rotate, don't repeat:** within a single `/run-funnel` run, if more
+   than one lead shares an industry, cycle through that industry's pool
+   (hero + gallery, de-duplicated) round-robin by position — lead 1 gets
+   pool[0], lead 2 gets pool[1], etc., wrapping around. Never give two
+   leads drafted in the same run (or already sitting in the Sheet) the
+   identical image for the same industry if the pool has more than one
+   entry. When pushing a new lead whose industry already has drafted
+   leads in the Sheet, check what the most recent one used and pick the
+   next pool entry, not pool[0] again.
+
+   | industry id | panels.json category | image pool (hero + gallery) |
    |---|---|---|
-   | cement-steel-material-handling | MCC Panels | `/images/panels/mcc-4.jpg` |
-   | water-effluent-sewage-treatment | STP/ETP/WTP Panels | `/images/panels/stp-etp-wtp-6.jpg` |
-   | commercial-real-estate-hospitality | HVAC Control Panels | `/images/panels/hvac.jpg` |
-   | chemical-petrochemical-pharma | Custom & Specialised Panels | `/images/panels/custom-5.jpg` |
-   | food-beverage-processing | Power Distribution Panels | `/images/panels/pdb-3.jpg` |
-   | data-centres-telecom | DG Control Panels | `/images/panels/dg-control.jpg` |
-   | utilities-residential-small-industry | APFC Panels | `/images/panels/apfc.jpg` |
-   | custom-process-plants | Custom & Specialised Panels | `/images/panels/custom-5.jpg` |
+   | fire-safety-systems | Fire Pump Control Panels | `fire-alarm.jpg`, `fire-alarm-1.jpg`, `fire-alarm-3.jpg`, `fire-alarm-4.jpg` |
+   | cement-steel-material-handling | MCC Panels | `mcc-4.jpg` (only one real image — no rotation available) |
+   | water-effluent-sewage-treatment | STP/ETP/WTP Panels | `stp-etp-wtp-6.jpg`, `stp-etp-wtp-4.jpg`, `stp-etp-wtp-5.jpg`, `stp-etp-wtp-7.jpg` |
+   | commercial-real-estate-hospitality | HVAC Control Panels | `hvac.jpg`, `hvac-1.jpg`, `hvac-2.jpg` |
+   | chemical-petrochemical-pharma | Custom & Specialised Panels | `custom-5.jpg` (only one real image — no rotation available) |
+   | food-beverage-processing | Power Distribution Panels | `pdb-3.jpg` (only one real image — no rotation available) |
+   | data-centres-telecom | DG Control Panels | `dg-control.jpg`, `dg-control-1.jpg`, `dg-control-2.jpg`, `dg-control-3.jpg` |
+   | utilities-residential-small-industry | APFC Panels | `apfc.jpg`, `apfc-1.jpg`, `apfc-2.jpg`, `apfc-3.jpg`, `apfc-4.jpg` |
+   | custom-process-plants | Custom & Specialised Panels | `custom-5.jpg` (only one real image — no rotation available) |
 
-   Prefix every image path with `https://amelectricals.co.in` for the
-   live URL. `email_2`/`email_3` stay short plain text (as already
+   Prefix every image path with `https://amelectricals.co.in/images/panels/`
+   for the live URL. `email_2`/`email_3` stay short plain text (as already
    established), signed just `Ayan`.
 
    **Signature identity is Ayan Debnath (7980954823)** — the person
