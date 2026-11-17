@@ -27,7 +27,9 @@ const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: site.name,
+  alternateName: 'AM Electricals',
   url: 'https://www.amelectricals.co.in/',
+  logo: 'https://amelectricals.co.in/logo.png',
   foundingDate: `${site.established}-01-01`,
   founder: { '@type': 'Person', name: site.founder },
   telephone: site.phone,
@@ -38,7 +40,11 @@ const localBusinessSchema = {
   '@type': 'LocalBusiness',
   '@id': 'https://www.amelectricals.co.in/#localbusiness',
   name: site.name,
+  alternateName: 'AM Electricals',
+  url: 'https://www.amelectricals.co.in/',
+  image: 'https://amelectricals.co.in/images/panels/hero-mcc.jpg',
   telephone: site.phone,
+  email: site.email,
   priceRange: '₹₹',
   address: {
     '@type': 'PostalAddress',
@@ -48,6 +54,46 @@ const localBusinessSchema = {
     addressRegion: site.address.state,
     addressCountry: 'IN',
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 22.5646,
+    longitude: 88.3914,
+  },
+  areaServed: { '@type': 'Country', name: 'India' },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: '10:00',
+    closes: '18:00',
+  },
+};
+
+const faqs = [
+  {
+    q: 'What standards are your control panels built to?',
+    a: 'Every panel is built to IS 8623 and IEC 61439-2, with CPRI 6000A type-tested designs rated to 70 kA / 1s short-circuit withstand on MCC and PCC panels.',
+  },
+  {
+    q: 'Which panels do you manufacture?',
+    a: 'APFC, MCC, PCC, PLC automation, AMF and DG sync, HVAC, AHU and metering, DG control, fire pump, power distribution, 3 phase distribution boards, STP/ETP/WTP and custom panels — 13 families in all.',
+  },
+  {
+    q: 'Do you deliver outside West Bengal?',
+    a: 'Yes. We are based in Kolkata and deliver across India. Panels are FAT tested before dispatch.',
+  },
+  {
+    q: 'How quickly can I get a quote?',
+    a: 'Send your single-line diagram, load list or a photo of the existing panel over WhatsApp or the quote form and we reply within one business day.',
+  },
+];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
 };
 
 const capabilities = [
@@ -89,9 +135,9 @@ const heroSlides = [
 ---
 
 <BaseLayout
-  title={`${site.name} . Control Panel Manufacturer, Kolkata . Since 1991`}
-  description="A.M.Electricals . CPRI 6000A and ISO 9001 certified control panel manufacturer in Kolkata. APFC, MCC, PCC, PLC, AMF/DG sync panels. 34 years, pan-India delivery."
-  schema={[orgSchema, localBusinessSchema]}
+  title="Control Panel Manufacturer in Kolkata | AM Electricals"
+  description="Control panel manufacturer in Kolkata since 1991. APFC, MCC, PCC, PLC, DG sync, fire pump & distribution panels. IS 8623, CPRI 70 kA tested. Quote in one day."
+  schema={[orgSchema, localBusinessSchema, faqSchema]}
   preloadHero="/images/panels/hero-switchboard.jpg"
 >
 
@@ -378,6 +424,26 @@ const heroSlides = [
           The full story
           <span class="btn-arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container-x py-20 md:py-28">
+    <div class="grid gap-8 lg:grid-cols-12">
+      <div class="lg:col-span-4 fade-up">
+        <div class="meta text-ink-500 mb-4">Common questions</div>
+        <h2 class="tracking-[-0.03em] max-w-[14ch]">Before you send a spec.</h2>
+      </div>
+      <div class="lg:col-span-7 lg:col-start-6 fade-up" style="transition-delay: 100ms;">
+        <dl class="divide-y divide-border-subtle">
+          {faqs.map((f) => (
+            <div class="py-5">
+              <dt class="text-[1.0625rem] font-medium mb-2">{f.q}</dt>
+              <dd class="text-[15px] text-ink-600 leading-relaxed">{f.a}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
   </section>
